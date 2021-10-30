@@ -1,0 +1,40 @@
+.talk-section{
+  padding: 45px 0; 
+}
+.talk-section__container{
+  display: flex;
+  align-items: center;
+}
+
+.talk-section__info{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.talk-section__info h1{
+  font-family: 'Poppins';
+  font-weight: 700;
+  line-height: 3rem;
+}
+
+.talk-section__button{
+  padding: 8px 16px;
+  background-color: var(--red);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.talk-section__img{
+  width: 430px;
+  display: flex;
+  justify-content:center;
+  padding: 12px;
+  box-shadow: 0px 8px 19px rgba(88, 126, 236, 0.18);
+}
+

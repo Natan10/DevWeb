@@ -11,7 +11,9 @@
 body {
   font-family: 'Poppins','Montserrat', sans-serif;
   font-size: 16px;
-  font-weight: normal;  
+  font-weight: normal; 
+  
+  height: 100vh;
 }
 
 /* 
