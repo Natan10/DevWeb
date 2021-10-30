@@ -1,0 +1,41 @@
+.navbar {
+  height: 80px;
+  background-color: var(--yellow);
+}
+
+.navbar-collapse{
+  justify-content: flex-end;
+}
+
+.navbar-nav .nav-link{
+  font-family: 'Poppins',sans-serif;
+  font-size: var(--sm);
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--white);
+
+  transition: transform .2s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover{
+  transform: scale(1.05,1.05);
+  color: var(--white);
+}
+
+.navbar-nav .navbar-nav__login{
+  padding: 0 1rem;
+  border: 2px solid var(--red);
+  border-radius: 5px;
+  background-color: transparent;
+
+  color: var(--red);
+  font-family: 'Poppins';
+  font-size: var(--sm);
+  cursor: pointer;
+
+  transition: transform 0.2s ease-in-out;
+}
+
+.navbar-nav .navbar-nav__login:hover{
+  transform: scale(1.05,1.05);
+}

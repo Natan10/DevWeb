@@ -1,5 +1,5 @@
 @import url("global.css");
-
-h1 {
-  color: #FF25;
-}
+@import url("navbar.css");
+@import url("info-section.css");
+@import url("process-section.css");
+@import url("talk-section.css");
