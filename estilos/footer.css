@@ -1,55 +1,55 @@
-.footer-section{
+.footer-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--black);
+  background-color: var(--dark-gray); /*Novo*/
+  /* background-color: var(--black); */
 
   padding-top: 45px;
   padding-bottom: 12px;
 }
 
-.footer-section__container{
+.footer-section__container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.footer-section__info{
+.footer-section__info {
   display: flex;
   justify-content: space-around;
 }
 
-.footer-section__contact span{
+.footer-section__contact span {
   color: var(--white);
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 1.25rem;
 }
 
-.footer-section__contact ul{
+.footer-section__contact ul {
   list-style: none;
 }
 
-.footer-section__contact li{
+.footer-section__contact li {
   margin: 8px 0;
 }
 
-.footer-section__contact ul li span{
+.footer-section__contact ul li span {
   font-size: 0.8rem;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   color: var(--white);
 }
 
-.footer-section__contact ul li a{
+.footer-section__contact ul li a {
   font-size: 0.8rem;
-  font-family: 'Montserrat';
-  color: var(--white) ;
+  font-family: "Montserrat";
+  color: var(--white);
   text-decoration: none;
 }
 
-
-.footer-section__button{
+.footer-section__button {
   justify-self: center;
 }
-.footer-section__button button{
+.footer-section__button button {
   padding: 8px 20px;
   background-color: var(--red);
   color: var(--white);
@@ -63,17 +63,17 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.footer-section__button button:hover{
-  transform:scale(1.05,1.05);
+.footer-section__button button:hover {
+  transform: scale(1.05, 1.05);
 }
 
-.footer-section__dedicatoria{
+.footer-section__dedicatoria {
   color: var(--white);
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 0.85rem;
   font-weight: bold;
 }
 
-.footer-section__dedicatoria:hover{
+.footer-section__dedicatoria:hover {
   opacity: 0.6;
 }

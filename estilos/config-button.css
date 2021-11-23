@@ -1,0 +1,31 @@
+.config-box {
+  position: fixed;
+  z-index: 100;
+  bottom: 24px;
+  right: 0;
+
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 0.25rem 0 0 0.25rem;
+  box-shadow: 0px 4px 18px var(--shadow-color);
+
+  cursor: pointer;
+  padding: 8px;
+}
+
+.config-box.opened {
+  right: 299px;
+  border-right: 0;
+}
+
+.config-box .config-icon {
+  width: 2rem;
+  height: 2rem;
+
+  transition: ease 2ms;
+}
+
+.config-box .config-icon:hover {
+  width: 2.1rem;
+  height: 2.1rem;
+}

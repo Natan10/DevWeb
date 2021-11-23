@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desenvolvimento Web</title>
+    <link rel="stylesheet" href="./estilos/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-collapse navbar-expand-lg">
+      <div class="container navbar-container">
+        <a class="navbar-brand" href="#">
+          <img src="assets/fp1.png" alt="logo" class="img-fluid" />
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#">Perfil</a>
+            <a class="nav-link" href="#">Foto perfil</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="content">
+      <div class="container navbar-container">
+        <div class="tables">
+          <div class="user-table">
+            <div class="table-header">
+              <h2>Usuários</h2>
+              <button>Criar</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th class="id">Id</th>
+                  <th class="label">E-mail</th>
+                  <th class="info">Tipo de usuário</th>
+                  <th class="actions">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="id">1</td>
+                  <td class="label">admin@admin.com</td>
+                  <td class="info">Admin</td>
+                  <td class="actions">Editar - Deletar</td>
+                </tr>
+                <tr>
+                  <td class="id">2</td>
+                  <td class="label">user@user.com</td>
+                  <td class="info">Manager</td>
+                  <td class="actions">Editar - Deletar</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="promo-table">
+            <div class="table-header">
+              <h2>Promoções</h2>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Promo</th>
+                  <th>Data de criação</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>promo1</td>
+                  <td>20/01/2019</td>
+                  <td>Editar - Deletar</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>promo2</td>
+                  <td>30/02/2019</td>
+                  <td>Editar - Deletar</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="config-box">
+      <img class="config-icon" src="./assets/cog.png" alt="condiguração" />
+    </div>
+
+    <script src="./scripts/config-modal.js"></script>
+  </body>
+</html>
