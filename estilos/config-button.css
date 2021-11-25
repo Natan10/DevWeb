@@ -1,6 +1,6 @@
 .config-box {
   position: fixed;
-  z-index: 100;
+  z-index: 101;
   bottom: 24px;
   right: 0;
 
@@ -14,7 +14,7 @@
 }
 
 .config-box.opened {
-  right: 299px;
+  right: var(--modal-width);
   border-right: 0;
 }
 
