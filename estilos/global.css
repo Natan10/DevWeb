@@ -14,8 +14,7 @@ body {
   font-weight: normal;
 
   height: 100vh;
-
-  background-color: var(--dark-gray);
+  background-color: var(--bg) !important;
 }
 
 /* 
