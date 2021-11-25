@@ -5,3 +5,9 @@
 @import url("talk-section.css");
 @import url("card-section.css");
 @import url("footer.css");
+
+/*Adições*/
+@import url("table-header.css");
+@import url("table.css");
+@import url("config-button.css");
+@import url("config-modal.css");
