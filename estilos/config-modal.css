@@ -1,0 +1,115 @@
+.config-modal {
+  width: 300px;
+  height: 200px;
+
+  position: fixed;
+  bottom: 24px;
+  right: -300px;
+  z-index: 100;
+
+  background-color: var(--white);
+  border-top: 1px solid var(--gray);
+  border-left: 1px solid var(--gray);
+  border-bottom: 1px solid var(--gray);
+
+  border-radius: 0.25rem 0 0 0;
+
+  padding: 1rem;
+}
+
+.config-modal.opened {
+  right: 0;
+}
+
+.title {
+  display: block;
+  border-bottom: 1px solid var(--gray);
+  margin-bottom: 0.25rem;
+
+  font-weight: 600;
+}
+
+.font-config,
+.theme-config {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.label-img {
+  width: 24px;
+}
+
+.label-txt {
+  height: 24px;
+
+  text-align: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+label.switch {
+  margin: 0;
+  display: flex;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--red);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--red);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

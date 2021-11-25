@@ -1,0 +1,17 @@
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-header button {
+  padding: 0 1.2rem;
+  border: 2px solid var(--green);
+  border-radius: 5px;
+  background-color: var(--green);
+
+  color: var(--white);
+  font-family: "Poppins";
+  font-size: var(--sm);
+  cursor: pointer;
+}
