@@ -3,10 +3,26 @@
     font-weight: bold;
     color: var(--gray);
   }
-    
+  
+  .card-section {
+    padding: 45px 0;
+    height: 800px;
+    overflow-y: scroll;
+    margin: 36px 0;
+  } 
+
+  .card-section__container {
+    display :flex;
+    justify-content :space-between;
+    flex-wrap: wrap;
+    width: 100%;
+
+  }
+
   .card-section__card {
     display:flex;
     flex-direction:column;
+    margin-bottom :30px;
     /* Adiciona sombra ao card*/
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     color: var(--gray);
