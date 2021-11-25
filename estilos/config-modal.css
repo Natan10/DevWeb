@@ -1,7 +1,4 @@
 .config-modal {
-  /* width: 300px;
-  height: 200px; */
-
   width: var(--modal-width);
 
   position: fixed;
