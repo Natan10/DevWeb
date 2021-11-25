@@ -1,6 +1,6 @@
 .navbar {
   height: 80px;
-  background-color: var(--yellow);
+  background-color: var(--header-color);
 }
 
 .navbar-collapse {
@@ -12,14 +12,14 @@
   font-size: var(--sm);
   font-weight: 500;
   text-decoration: none;
-  color: var(--white);
+  color: var(--bg);
 
   transition: transform 0.2s ease-in-out;
 }
 
 .navbar-nav .nav-link:hover {
   transform: scale(1.05, 1.05);
-  color: var(--white);
+  color: var(--bg);
 }
 
 .navbar-nav .navbar-nav__login {

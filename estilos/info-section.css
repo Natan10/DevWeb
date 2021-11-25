@@ -1,5 +1,5 @@
 .info-section {
-  background-color: var(--yellow);
+  background-color: var(--header-color);
   padding: 1.5rem 0;
 }
 
@@ -21,7 +21,7 @@
   margin-bottom: 12px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: var(--white);
+  color: var(--bg);
 }
 
 .info-section__frases p {
@@ -30,7 +30,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   font-size: 1.25rem;
-  color: var(--white);
+  color: var(--bg);
 }
 
 .info-section__button {

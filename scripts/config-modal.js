@@ -7,12 +7,14 @@ const initialColors = {
   bg: getStyle(html, "--bg"),
   fontColor: getStyle(html, "--font-color"),
   shadowColor: getStyle(html, "--shadow-color"),
+  headerColor: getStyle(html, "--header-color"),
 };
 
 const darkColors = {
   bg: "#141726",
   fontColor: "#efeff4",
   shadowColor: "#00000099",
+  headerColor: "#efeff4"
 };
 
 function getStyle(element, style) {

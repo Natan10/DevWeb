@@ -45,4 +45,5 @@ body {
   --bg: #efeff4;
   --font-color: #141726;
   --shadow-color: #587eec2e;
+  --header-color: var(--yellow);
 }
