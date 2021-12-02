@@ -8,7 +8,6 @@ class SessionsController {
     const { email, password } = req.body;
     const prisma = new PrismaClient();
 
-    console.log("segredooo", process.env.JWT_SECRET?.toString());
     try {
       const user = await prisma.user.findFirst({
         where: { email },
@@ -26,9 +25,9 @@ class SessionsController {
           process.env.JWT_SECRET?.toString() || ""
         );
         return res.json({ token });
+      } else {
+        return res.status(401).json("Password incorreto!");
       }
-
-      return res.status(401).json("Password incorreto!");
     } catch (err) {
       return res.status(500).json({ error: "Erro ao logar!" });
     }

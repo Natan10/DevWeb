@@ -3,7 +3,10 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "nome" TEXT,
     "email" TEXT NOT NULL,
-    "isAdmin" BOOLEAN NOT NULL DEFAULT false,
+    "password" TEXT NOT NULL,
+    "isAdmin" BOOLEAN DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
