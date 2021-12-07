@@ -7,12 +7,12 @@
     <title>Desenvolvimento Web</title>
 
     <!--css-->
-    <link href="estilos/styles.css" rel="stylesheet"/>
+    <link href="./estilos/style.css" rel="stylesheet"/>
     <link
         rel="stylesheet"
-        href="https:"
-        integrity=""
-        crossorigin=""
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+        crossorigin="anonymous"
     />
 </head>
 <body>
@@ -30,16 +30,16 @@
             <div class="login-section__text-fields">
                 <form>
                     <label for="user">Usuário:</label><br>
-                    <input type="text" id="user" name="user"><br>
+                    <input type="text" id="user" name="user" placeholder="Insira seu usuário"><br>
                     <label for="password">Senha:</label><br>
-                    <input type="text" id="password" name="password"><br>   
+                    <input type="password" id="password" name="password" placeholder="********"><br>   
                 </form>                
             </div>
-            <div classclass="login-section__buttons">
+            <div class="login-section__buttons">
                 <input type ="checkbox" id="remember-me" value="Yes">
                 <label for="remember-me">Lembrar de mim</label><br>
-                <button type="button" class="login-section__buttons__login-button">Entrar</button>
-                <button type="button" class="login-section__buttons__signin-button">Ou entrar com google</button>
+                <button type="button" class="login-section__buttons__login-button">Entrar</button><br>
+                <button type="button" class="login-section__buttons__signin-button"><img src="assets/google-icon.png" alt="" width="16" height="16"> Ou entrar com Google</button>
             </div>
         </div>        
     </section>

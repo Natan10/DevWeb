@@ -1,7 +1,75 @@
-.login-section__container {
+.login-section {
     padding: 45px;
+    width: 50%;
+}
+
+
+.login-section__container {
+    color: var(--font-color);    
 }
 
 .login-section__frases{
-    color: var(--font-color);    
+    width:60%;
+}
+
+.login-section__text-fields {
+    font-weight: bold;
+}
+
+.login-section__text-fields input[type=text] {
+    width:60%;
+    background-color: transparent;
+    padding: 10px 10px;   
+    font-size: 16px;    
+    border-color: var(--black);
+    border-width: 1px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.login-section__text-fields input[type=password] {
+    width:60%;
+    background-color: transparent;
+    padding: 10px 10px;    
+    font-size: 16px;    
+    border-color: var(--black);
+    border-width: 1px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.login-section__buttons {
+    font-weight: bold;
+    padding: 10px 0 10px 0;
+}
+
+.login-section__buttons input[type=checkbox] {
+    border-radius: 5px;
+}
+
+.login-section__buttons__login-button {
+    width:60%;
+    padding: 10px 120px;
+    background-color: var(--red);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-section__buttons__signin-button {
+    width:60%;
+    padding: 10px 120px;
+    background-color: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin: 10px 0px 0px 0;
 }
