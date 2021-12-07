@@ -25,6 +25,12 @@
 
 .login-section__frases{
     width:60%;
+    font-family: Poppins;
+    margin-bottom: 10px;
+}
+
+.login-section__frases p{
+    margin-bottom: 0px;
 }
 
 .login-section__text-fields {
@@ -60,7 +66,7 @@
 }
 
 .login-section__buttons input[type=checkbox] {
-    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .login-section__buttons__login-button {
