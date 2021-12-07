@@ -3,7 +3,7 @@
     min-width: 50%;
     min-height: 100%;    
     color: var(--font-color);
-    padding-top: 45px;
+    padding-top: 40px;
     background-color: var(--yellow);
 }
 
@@ -22,21 +22,19 @@
 }
 
 .left-section__image img {
-    min-width: 65%;
-    min-height: 100%;    
+    min-width: 63%;
+    max-height: 100%;    
 }
 
 .signup-section {
-    position: absolute;
-    min-width:50%;
-    text-align: left;
-    padding:45px;
+    position: absolute;    
+    text-align: left;    
     margin-inline-start: 65%; 
-    margin-top: 60px;   
+    margin-top: 50px;
+    max-height: 100%;   
 }
 
 .signup-section__frases {
-    width:50%;
     font-family: Poppins;
     text-align: justify;
     padding-left: 10px;
@@ -48,7 +46,7 @@
 }
 
 .signup-section__text-fields input[type=text] {
-    width:416px;
+    width:416px;    
     background-color: var(--white);
     padding: 10px 10px;   
     font-size: 16px;    
@@ -60,7 +58,7 @@
 }
 
 .signup-section__text-fields input[type=password] {
-    width:416px;
+    width:416px;    
     background-color: var(--white);
     padding: 10px 10px;    
     font-size: 16px;    
@@ -72,8 +70,7 @@
 
 .signup-section__buttons {
     font-weight: bold;
-    padding: 10px 0 10px 0;
-    width:416px;
+    padding: 40px 0 10px 0;    
 }
 
 .signup-section__buttons__clear-button {
@@ -101,9 +98,9 @@
     margin: 0px 0px 0px 47px;
 }
 
-.signup-section__policy {
-    width:416px;
+.signup-section__policy {    
     text-align: center;
     font-family: Poppins;
     margin-top: 10px;
+    width:416px;
 }
