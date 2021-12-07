@@ -1,3 +1,86 @@
 .left-section {
+    display:flex;
+    flex-direction:column;
+    width: 50%;
     color: var(--font-color);
+    padding-top: 250px;
+}
+
+.left-section__frases{
+    width:50%;
+    padding:100px 45px;
+}
+
+.signup-section {
+    display:flex;
+    flex-direction:column;
+    width:50%;
+    text-align: left;
+    padding:45px;
+}
+
+.signup-section__frases {
+    width:50%;
+}
+
+.signup-section__text-fields {
+    font-weight: bold;
+}
+
+.signup-section__text-fields input[type=text] {
+    width:416px;
+    background-color: var(--white);
+    padding: 10px 10px;   
+    font-size: 16px;    
+    border-color: #D9D9D9;
+    border-width: 1px;
+    border-radius: 5px;
+    text-align: left;
+
+}
+
+.signup-section__text-fields input[type=password] {
+    width:416px;
+    background-color: var(--white);
+    padding: 10px 10px;    
+    font-size: 16px;    
+    border-color: #D9D9D9;
+    border-width: 1px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.signup-section__buttons {
+    font-weight: bold;
+    padding: 10px 0 10px 0;
+}
+
+.signup-section__buttons__clear-button {
+    padding: 10px 40px;
+    background-color: rgba(242, 92, 39, 0.1);
+    color: var(--red);
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.signup-section__buttons__register-button {
+    padding: 10px 60px;
+    background-color: var(--red);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin: 0px 0px 0px 47px;
+}
+
+.signup-section__policy {
+    width:50%;
+    text-align: center;
 }

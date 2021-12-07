@@ -1,12 +1,26 @@
-.login-section {
-    padding: 150px;
-    width: 55%;
-    
+.background-section img {
+    position: fixed;
+    min-width: 1024px;
+    min-height: 100%;
+    margin-left: 39%;
+    margin-top: 1px;
+
 }
 
+.login-section {
+    padding:80px;    
+    width: 55%; 
+    position: absolute; 
+    margin-left: 20px;  
+}
+
+.login-section__img {
+    padding-left: 18%;
+}
 
 .login-section__container {
-    color: var(--font-color);    
+    color: var(--font-color);
+    padding: 60px;    
 }
 
 .login-section__frases{
@@ -26,6 +40,7 @@
     border-width: 1px;
     border-radius: 5px;
     text-align: left;
+    margin-bottom: 5px;
 }
 
 .login-section__text-fields input[type=password] {
