@@ -1,3 +1,7 @@
+.login-section__container {
+    padding: 45px;
+}
+
 .login-section__frases{
     color: var(--font-color);    
 }
