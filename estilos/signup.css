@@ -1,12 +1,12 @@
 .signup{
   display: flex;
   justify-content: space-between;
-  height: 100%;
+  min-height: 100%;
 }
 
 .signup__banner{
   background-color: var(--yellow);
-  width: 50%;
+  max-width: 50%;
 
   display: flex;
   flex-direction: column;
@@ -14,12 +14,8 @@
   justify-content: space-around;
 }
 
-.signup__banner{
-  width: 60%;
-}
-
 .signup__banner-title{
-  padding: 20px;
+  padding: 50px;
   align-self: center;
 }
 
@@ -33,12 +29,11 @@
 }
 
 .signup__form{
-  width: 40%;
-  padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 50px;
+  padding: 150px;
 }
 
 .signup__welcome{
@@ -108,12 +103,12 @@
   font-weight: bold;
 }
 
-.signup__buttons .signup__clean{
+.signup__buttons .signup__clear-button{
   background-color: #f6e8e6;
   color: #F25C27;
 }
 
-.signup__buttons .signup__confirm{
+.signup__buttons .signup__register-button{
   background-color: var(--red);
   color: var(--white);
 }

@@ -1,3 +1,125 @@
+.login {
+    display: block;
+    min-height: 100%;
+    max-width: 100%;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    gap: 20px;
+    align-items: start;
+    padding: 80px;
+}
+
+.login__logo {
+    padding: 20px;
+    align-self: center;
+}
+
+.login__welcome {
+    width: 100%;
+}
+
+.login__welcome span {
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    width: 100%;
+}
+
+.login__welcome h1 {
+    width: 100%;
+    font-weight: 700;
+    font-family: Poppins, sans-serif;
+}
+
+.login__form form {
+    width: 100%;
+}
+
+.login__field {
+    padding-bottom: 10px;
+}
+
+.login__field label {
+    width: 100%;
+    font-weight: bold;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+}
+
+.login__field input {
+    width: 100%;
+    background-color: transparent;
+    border-color: #263238;
+    border-width: 1px;
+    border-radius: 5px;    
+    font-size: 16px;
+    padding: 10px;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+}
+
+.login__checkbox {
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.login__checkbox input {
+    border: 1px solid #192026;
+    box-sizing: border-box;
+}
+
+.login__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login__buttons button {
+    width: 100%;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.login__login-button {
+    background: #E6191E;
+    font-family: Montserrat, sans-serif;
+    color: #FFFFFF;
+}
+
+.login__signin-button {
+
+    background: var(--white);
+    font-family: Poppins, sans-serif;
+    color: var(--black);
+}
+
+.login__signup-button {
+    background-color: #f6e8e6;
+    color: #F25C27;
+    font-family: Poppins, sans-serif;
+}
+
+
+
+
+
+
+
+
+/*background-image:url(back-login.png);
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position-x: ;
+
+
 .background-section img {
     position: fixed;
     min-width: 1024px;

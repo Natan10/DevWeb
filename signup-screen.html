@@ -7,6 +7,7 @@
     <title>Desenvolvimento Web</title>
 
     <!--css-->
+    <link href="./estilos/global.css" rel="stylesheet"/>
     <link href="./estilos/style.css" rel="stylesheet"/>
     <link
         rel="stylesheet"
@@ -16,51 +17,42 @@
     />
 </head>
 <body>
-    <!--Lado esquerdo da tela-->
-    <section class="left-section">
-        <div class="left-section__container">
-            <div class="left-section__frases-white">
-                <h1>Suas melhores<br>promoções a um</h1>                
+    <section class="signup">
+        <div class="signup__banner">
+            <div class="signup__banner-title">
+                <h1>Suas melhores promoções a um<span> click de distância</span>.</h1>                
+            </div>            
+            <img
+                src="assets/back-signup.png"
+                alt=""
+                class="img-fluid"
+            />
+        </div>
+        <div class="signup__form">
+            <div class="signup__welcome">
+                <h1>Bem-vindo(a) à empresa nova!</h1>
+                <span>Você já possui alguma conta? <a href="#">Faça seu Login.</a></span>                
             </div>
-            <div class="left-section__frases-black">
-                <h1>click de distância</h1>
-            </div>
-            <div class="left-section__frases-white">
-                <h1>.</h1>                
-            </div>
-            <div class="left-section__image">
-                <img
-                    src="assets/back-signup.png"
-                    alt=""
-                    class="img-fluid"
-                />
-            </div>
-        </div>        
-    </section>
-
-    <!--Lado direito da tela-->
-    <section class="signup-section">
-        <div class="signup-section__container">
-            <div class="signup-section__frases">
-                <h1>Bem-vindo(a) à<br>empresa nova!</h1>
-                <p>Você já possui alguma conta? <a href="#">Faça seu Login.</a></p>                
-            </div>
-            <div class="signup-section__text-fields">
-                <form>
-                    <label for="fname-lname">Nome e Sobrenome:</label><br>
-                    <input type="text" id="fname-lname" name="fname-lname" required placeholder="Insira seu nome"><br>
-                    <label for="email">Email:</label><br>
-                    <input type="text" id="email" name="email" required placeholder="email@example.com"><br>     
-                    <label for="password">Senha:*</label><br>
-                    <input type="password" id="password" required name="password"><br>   
-                </form>
-            </div>
-            <div class="signup-section__buttons">
-                <button type="button" class="signup-section__buttons__clear-button">Limpar dados</button>
-                <button type="button" class="signup-section__buttons__register-button">Registro</button>
-            </div>
-            <div class="signup-section__policy">
-                <p>Ao se inscrever, você concorda com nossos <a href="#">Termos e condições </a>e <a href="#">Políticas de Privacidade.</a></p>
+            <form>
+                <div class="signup__field">
+                    <label for="fname-lname">Nome e Sobrenome:</label>
+                    <input type="text" id="fname-lname" name="fname-lname" required placeholder="Insira seu nome">
+                </div>
+                <div class="signup__field">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required placeholder="email@example.com">     
+                </div>
+                <div class="signup__field">
+                    <label for="password">Senha:*</label>
+                    <input type="password" id="password" required placeholder="********">   
+                </div>
+                <div class="signup__buttons">
+                    <button type="button" class="signup__clear-button">Limpar dados</button>
+                    <button type="button" class="signup__register-button">Registro</button>
+                </div>                        
+            </form>            
+            <div class="signup__policy">
+                <span>Ao se inscrever, você concorda com nossos <a href="#">Termos e condições </a>e <a href="#">Políticas de Privacidade.</a></span>
             </div>
         </div>
     </section>

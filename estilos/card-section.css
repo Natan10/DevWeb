@@ -34,6 +34,7 @@
   color: var(--gray);
   background-color: var(--white);
   width: 296px;
+  border-radius: 5px;
 }
 .card-section__card .card-section__img {
   padding: 20px;
