@@ -8,7 +8,7 @@
 
     <!--css-->
     <link href="./estilos/global.css" rel="stylesheet"/>
-    <link href="./estilos/style.css" rel="stylesheet"/>
+    <link href="./estilos/login.css" rel="stylesheet"/>
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -17,38 +17,39 @@
     />
 </head>
 <body>    
-    <section class="login">        
-        <div class="login__form">
-            <a class="login__logo" href="#">
-                <img src="assets/fp3.png" alt="logo" class="img-fluid" />
-            </a>
-            <div class="login__welcome">
-                <span>Bem-vinde de volta</span>
-                <h1>Faça Seu Login</h1>
-            </div>
-            <form>
-                <div class="login__field">
-                    <label for="user">Usuário:</label>
-                    <input type="text" id="user" name="user" placeholder="Insira seu usuário">
-                </div>
-                <div class="login__field">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" placeholder="********">
-                </div>
-                <div class="login__checkbox">
-                    <input type ="checkbox" id="remember-me" value="Yes">
-                    <label for="remember-me">Lembrar de mim</label><br>
-                </div>
-                <div class="login__buttons">
-                    <button type="button" class="login__login-button">Entrar</button>
-                    <button type="button" class="login__signin-button"><img src="assets/google-icon.png" alt="" width="16" height="16"> Ou entrar com Google</button>
-                    <button type="button" class="login__signup-button">Cadastrar-se</button>
-                </div>
-            </form>
-        </div>        
-        <div class="login__banner">
-            <img src="assets/back-login.png" alt="" class="img-fluid"/>
-        </div>
-    </section>
+  <section class="login">        
+      <div class="login__form">
+          <a class="login__logo" href="#">
+              <img src="assets/fp3.png" alt="logo" class="img-fluid" />
+          </a>
+          <div class="login__welcome">
+              <span>Bem-vindo de volta</span>
+              <h1>Faça Seu Login</h1>
+          </div>
+          <form>
+              <div class="login__field">
+                  <label for="user">Usuário:</label>
+                  <input type="text" id="user" name="user" placeholder="Insira seu usuário">
+              </div>
+              <div class="login__field">
+                  <label for="password">Senha:</label>
+                  <input type="password" id="password" name="password" placeholder="********">
+              </div>
+              <div class="login__checkbox">
+                  <input type ="checkbox" id="remember-me" value="Yes">
+                  <label for="remember-me">Lembrar de mim</label><br>
+              </div>
+              <div class="login__buttons">
+                <button type="button" class="login__login-button">Entrar</button>
+                <a href="signup-screen.html">
+                  <button type="button" class="login__signup-button">Cadastrar-se</button>
+                </a>
+              </div>
+          </form>
+      </div>        
+      <div class="login__banner">
+        <img src="assets/back-login.png" alt=""/>
+      </div>
+  </section>
 </body>
 </html>
