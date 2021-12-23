@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: db-devweb
     environment:
-      POSTGRES_USER: devweb
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: docker
     restart: always
   
@@ -13,7 +13,7 @@ services:
     build: .
     container_name: app-devweb
     environment:
-      DATABASE_URL: "postgresql://devweb:docker@db:5432/devWeb?schema=public"
+      DATABASE_URL: "postgresql://postgres:docker@db:5432/devWeb?schema=public"
     command: >
       sh -c "npx prisma migrate reset -f && npm start"
     depends_on: 
