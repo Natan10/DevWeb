@@ -1,15 +1,29 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import { UsersController } from "./controllers/UsersController";
 import { SessionsController } from "./controllers/SessionsController";
 import { AuthController } from "./controllers/AuthController";
 
 const router = Router();
 
-router.post("/signUp", new UsersController().create);
-router.post("/signIn", new SessionsController().handle);
+router.get("/cadastrar", (req: Request, res: Response) => {
+  return res.render("signup-screen");
+});
 
-router.get("/test", new AuthController().handle, (req, res) => {
-  return res.json({ userId: req.body.userId });
+router.post("/cadastrar", new UsersController().create);
+
+router.get("/entrar", (req: Request, res: Response) => {
+  return res.render("login-screen");
+});
+
+// router.post("/cadastrar", (req: Request, res: Response) => {
+//   console.log("req", req.body);
+//   return res.status(200).send(req.body);
+// });
+
+// router.post("/login", new SessionsController().handle);
+
+router.get("/", new AuthController().handler, (req: Request, res: Response) => {
+  return res.render("index");
 });
 
 export { router };

@@ -15,7 +15,7 @@ class UsersController {
       });
 
       if (userExist) {
-        return res.json({ message: "User já existe!" });
+        return res.status(400).json({ message: "User já existe!" });
       }
 
       const user = new User(nome, email, password);
@@ -27,16 +27,10 @@ class UsersController {
         },
       });
 
-      return res.status(201).json({
-        user: {
-          nome: user.Nome,
-          email: user.Email,
-          isAdmin: user.IsAdmin,
-        },
-      });
+      res.setHeader("Content-Type", "text/html");
+      return res.redirect("/entrar");
     } catch (err) {
-      console.log(err);
-      return res.status(500).json({ error: "Erro ao criar user" });
+      return res.status(400).json({ error: "Erro ao criar usuário" });
     }
   }
 }
