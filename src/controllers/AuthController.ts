@@ -8,11 +8,13 @@ interface TokenProps {
 }
 
 class AuthController {
-  async handle(req: Request, res: Response, next: NextFunction) {
+  async handler(req: Request, res: Response, next: NextFunction) {
     const prisma = new PrismaClient();
     const secret = process.env.JWT_SECRET?.toString() || "";
+
     try {
-      const authToken = req.headers.authorization?.split(" ")[1];
+      const authToken = req.cookies.userToken;
+      // const authToken = req.headers.authorization?.split(" ")[1];
 
       if (!authToken) {
         throw new Error("Authentication failed!");
@@ -28,10 +30,10 @@ class AuthController {
         req.body.userId = user.id;
         next();
       } else {
-        return res.status(400).json("Invalid Token!");
+        return res.redirect("/entrar");
       }
     } catch (err) {
-      res.status(400).json("Invalid Token!");
+      return res.redirect("/entrar");
     }
   }
 }

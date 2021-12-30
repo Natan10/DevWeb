@@ -57,10 +57,21 @@
   border-radius: 5px;
   border: 1px solid #D9D9D9;
   padding: 10px 20px;
+  outline: none;
 }
 
-.login__field input:focus{
+.login__field input:hover{
   border-color: blue;
+  outline: none;
+}
+
+.login__field input.invalid{
+  border-color: var(--red) !important;
+  outline: none;
+}
+
+.login__field input.valid{
+  border-color: var(--green) !important;
   outline: none;
 }
 

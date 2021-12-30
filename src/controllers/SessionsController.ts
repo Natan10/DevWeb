@@ -4,7 +4,7 @@ import { User } from "../models/user";
 import { sign } from "jsonwebtoken";
 
 class SessionsController {
-  async handle(req: Request, res: Response) {
+  async handler(req: Request, res: Response) {
     const { email, password } = req.body;
     const prisma = new PrismaClient();
 
@@ -14,7 +14,7 @@ class SessionsController {
       });
 
       if (!user) {
-        return res.status(404).json({ message: "Usuário não encontrado!!!" });
+        return res.status(404).json({ message: "Usuário não encontrado!" });
       }
 
       if (await User.comparePassword(password, user.password)) {
@@ -24,7 +24,13 @@ class SessionsController {
           },
           process.env.JWT_SECRET?.toString() || ""
         );
-        return res.json({ token });
+
+        res.cookie("userToken", token, {
+          httpOnly: true,
+          expires: new Date(120000 + Date.now()),
+        });
+
+        return res.redirect("/");
       } else {
         return res.status(401).json("Password incorreto!");
       }

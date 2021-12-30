@@ -5,6 +5,10 @@ import { AuthController } from "./controllers/AuthController";
 
 const router = Router();
 
+// router.get("/", (req: Request, res: Response) => {
+//   return res.render("index");
+// });
+
 router.get("/cadastrar", (req: Request, res: Response) => {
   return res.render("signup-screen");
 });
@@ -15,12 +19,7 @@ router.get("/entrar", (req: Request, res: Response) => {
   return res.render("login-screen");
 });
 
-// router.post("/cadastrar", (req: Request, res: Response) => {
-//   console.log("req", req.body);
-//   return res.status(200).send(req.body);
-// });
-
-// router.post("/login", new SessionsController().handle);
+router.post("/entrar", new SessionsController().handler);
 
 router.get("/", new AuthController().handler, (req: Request, res: Response) => {
   return res.render("index");

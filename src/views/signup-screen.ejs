@@ -60,6 +60,7 @@
 	</section>
 
 	<script src="scripts/iziToast.js" type="text/javascript"></script>
+  <script src="scripts/field-validation.js" type="text/javascript"></script>
 	<script>
 		var nomeField = document.getElementById('name');
 		var emailField = document.getElementById('email');
@@ -108,17 +109,6 @@
 			})
 		})
 
-
-		function validateField(condition,field){
-			if(condition){
-				field.classList.add('invalid');
-				field.classList.remove('valid');
-			}else{
-				field.classList.remove('invalid');
-				field.classList.add('valid');
-			}
-		}
-
 		nomeField.addEventListener('input',function(){
 			let nome = nomeField.value.toString();
 			if(nome.length === 0){
@@ -151,12 +141,7 @@
 			validateField(password.length <= 5, passwordField);
 		},false);
 
-		function resetStateField(field){
-			field.value = '';
-			field.classList.remove('invalid');
-			field.classList.remove('valid');
-		}
-
+		
 		function cleanFields(){
 			resetStateField(nomeField);
 		 	resetStateField(emailField);
