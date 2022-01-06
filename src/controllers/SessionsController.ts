@@ -30,7 +30,7 @@ class SessionsController {
           expires: new Date(120000 + Date.now()),
         });
 
-        return res.redirect("/");
+        return res.redirect("/admin");
       } else {
         return res.status(401).json("Password incorreto!");
       }
