@@ -23,6 +23,11 @@
 }
 
 .navbar-nav .navbar-nav__login {
+
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  
   padding: 0 1rem;
   border: 2px solid var(--red);
   border-radius: 5px;
@@ -32,6 +37,9 @@
   font-family: "Poppins";
   font-size: var(--sm);
   cursor: pointer;
+
+  outline: none;
+  text-decoration: none;
 
   transition: transform 0.2s ease-in-out;
 }
