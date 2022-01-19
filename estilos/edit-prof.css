@@ -4,7 +4,7 @@
     min-height: 100%;
   }
   
-  .edit-profile__banner{
+.edit-profile__banner{
     background-color: var(--yellow);
     max-width: 50%;
   
@@ -12,20 +12,12 @@
     flex-direction: column;
     align-items: start;
     justify-content: space-around;
-  }
-  
-  .edit-profile__banner-title{
-    padding: 50px;
-    align-self: center;
-  }
-  
-  .edit-profile__banner-title h1{
-    font-weight: 900;
-    font-family:  Poppins, sans-serif;
-    color: var(--black);
-  }
-  
+}
 
+.edit-profile__logo {
+    padding: 20px;
+    align-self: center;
+}
 .edit-profile__welcome{
     display: flex;
     flex-direction: column;
