@@ -20,7 +20,7 @@
 	<section class="edit-profile">
 		<div class="edit-profile__banner">
 			<div class="edit-profile__banner-title">
-				<h1>Edite as informações do perfil</h1>                
+				<h1>FindPromo</h1>                
 			</div>            
 			<img
 					src="assets/back-signup.png"
@@ -28,19 +28,21 @@
 					class="img-fluid"
 			/>
 		</div>
+        <div class="edit-profile__welcome">
+            <h1>Edite as informações do seu usuário</h1>
+        </div>
 		<div class="edit-profile__form">
 			<form>
 				<div class="edit-profile__field">
 					<label for="fname-lname">Nome e Sobrenome:</label>
-					<input type="text" id="fname-lname" name="fname-lname" required placeholder="Insira seu nome">
+					<input type="text" id="fname-lname" name="fname-lname" required placeholder="Edite seu nome">
 				</div>
 				<div class="edit-profile__field">
 					<label for="email">Email:</label>
 					<input type="text" id="email" name="email" required placeholder="email@example.com">     
 				</div>
 				<div class="edit-profile__buttons">
-					<button type="button" class="signup__clear-button">Limpar dados</button>
-					<button type="button" class="signup__register-button" onclick="signUp()">Registrar</button>
+					<button type="button" class="edit-profile__save-button" onclick="signUp()">Salvar</button>
 				</div>                                       
 			</form>            
 		</div>

@@ -22,10 +22,21 @@
   .edit-profile__banner-title h1{
     font-weight: 900;
     font-family:  Poppins, sans-serif;
-    color: var(--white);
+    color: var(--black);
   }
   
-  .edit-profile__form{
+
+.edit-profile__welcome{
+    display: flex;
+    flex-direction: column;
+}
+  
+.edit-profile__welcome h1{
+    font-weight: 900;
+    font-family:  Poppins, sans-serif;
+}
+  
+.edit-profile__form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,12 +88,7 @@
     font-weight: bold;
 }
   
-.edit-profile__buttons .signup__clear-button{
-    background-color: #f6e8e6;
-    color: #F25C27;
-}
-  
-.edit-profile__buttons .signup__register-button{
+.edit-profile__buttons .edit-profile__save-button{
     background-color: var(--red);
     color: var(--white);
 }
