@@ -9,6 +9,7 @@
     <!--css-->
     <link href="./estilos/global.css" rel="stylesheet"/>
     <link href="./estilos/edit-prof.css" rel="stylesheet"/>
+    <link href="./estilos/style.css" rel="stylesheet"/>
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -17,35 +18,50 @@
     />
 </head>
 <body>
-	<section class="edit-profile">
-		<div class="edit-profile__banner">
-			<a class="edit-profile__logo" href="#">
-                <img src="assets/fp3.png" alt="logo" class="img-fluid" />
-            </a>            
-			<img
-					src="assets/back-signup.png"
-					alt=""
-					class="img-fluid"
-			/>
-		</div>
-		<div class="edit-profile__form">
-            <div class="edit-profile__welcome">
-                <h1>Edite as informações do seu usuário</h1>
+    <nav class="navbar navbar-collapse navbar-expand-lg">
+        <div class="container navbar-container">
+          <a class="navbar-brand" href="#">
+            <img src="assets/fp1.png" alt="logo" class="img-fluid" />
+          </a>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="#">Perfil</a>
+              <a class="nav-link" href="#">Foto perfil</a>
             </div>
-			<form>
-				<div class="edit-profile__field">
-					<label for="fname-lname">Nome e Sobrenome:</label>
-					<input type="text" id="fname-lname" name="fname-lname" required placeholder="Edite seu nome">
-				</div>
-				<div class="edit-profile__field">
-					<label for="email">Email:</label>
-					<input type="text" id="email" name="email" required placeholder="email@example.com">     
-				</div>
-				<div class="edit-profile__buttons">
-					<button type="button" class="edit-profile__save-button" onclick="signUp()">Salvar</button>
-				</div>                                       
-			</form>            
-		</div>
+          </div>
+        </div>
+      </nav>
+  
+	<section class="content">
+        <div class="container navbar-container">
+            <div class="tables">
+                <div class="user-table">
+                    <div class="table-header">
+                        <h2>Usuário</h2>
+                        <button>Salvar</button>
+                    </div>
+                    <table>
+                        <div class="edit-profile">
+                            <form>
+                                <div class="edit-profile__field">
+                                    <label for="fname-lname">Editar nome e sobrenome:</label>
+                                    <input type="text" id="fname-lname" name="fname-lname" required placeholder="Insira nome e sobrenome">
+                                </div>
+                                <div class="edit-profile__field">
+                                    <label for="email">Editar email:</label>
+                                    <input type="text" id="email" name="email" required placeholder="email@example.com">     
+                                </div>
+                                <div class="edit-profile__field">
+                                    <label for="password">Editar senha:</label>
+                                    <input type="password" id="password" required placeholder="********">   
+                                </div>
+                            </form>            
+                        </div>  
+                    </table>
+                </div>
+            </div>
+        </div>
 	</section>
 </body>
 </html>
