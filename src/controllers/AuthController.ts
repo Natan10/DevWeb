@@ -28,6 +28,7 @@ class AuthController {
 
       if (user) {
         req.body.userId = user.id;
+        req.body.isAdmin = user.isAdmin
         next();
       } else {
         return res.redirect("/entrar");

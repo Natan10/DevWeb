@@ -1,0 +1,60 @@
+.adm-modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adm-modal {
+  background-color: var(--bg);
+  color: var(--font-color);
+  border: 1px solid var(--font-color);
+  border-radius: 0.5rem;
+  width: 300px;
+  padding: 10px 20px;
+}
+
+.adm-modal-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.adm-modal-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.adm-modal-field input,
+.adm-modal-field select {
+  border-radius: 0.25rem;
+  border: 1px solid #888;
+  height: 30px;
+}
+
+.adm-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.adm-modal-actions .action {
+  background-color: green;
+  color: white;
+}
+
+.adm-modal-actions .cancel {
+  color: red;
+  border: 1px solid red;
+}
+
+.hide {
+  visibility: hidden;
+}
