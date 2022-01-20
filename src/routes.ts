@@ -11,6 +11,10 @@ router.get("/cadastrar", (req: Request, res: Response) => {
 
 router.post("/cadastrar", new UsersController().create);
 
+router.get("/editar", (req: Request, res: Response) => {
+  return res.render("edit-prof");
+});
+
 router.get("/entrar", (req: Request, res: Response) => {
   return res.render("login-screen");
 });
