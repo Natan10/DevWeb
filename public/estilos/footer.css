@@ -49,6 +49,13 @@
 .footer-section__button {
   justify-self: center;
 }
+
+.footer-section__button button a {
+  text-decoration: none;
+  outline: none;
+  color: var(--white);
+}
+
 .footer-section__button button {
   padding: 8px 20px;
   background-color: var(--red);
