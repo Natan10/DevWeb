@@ -1,1 +1,22 @@
-<h1>Ja</h1>
+
+<div class="card-section__card">
+  <a href= <%= promotion.link  %> target="_blank">
+    <img
+      class="img-fluid card-section__img"
+      src="assets/arroz.jpg"
+      alt="Product"
+    />
+  </a>
+  <div class="card-section__body">
+    <h4><%= promotion.nome %></h4>
+    <p><%= promotion.descricao %></p>
+    <div class="card-section__price">
+      <span><%= promotion.preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});%></span>
+    </div>
+  </div>
+  <img
+    class="img-fluid card-section__bodyImg"
+    src="assets/shop.png"
+    alt="Shop"
+  />
+</div>
