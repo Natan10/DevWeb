@@ -1,10 +1,15 @@
 import { faker } from "@faker-js/faker";
+import { User } from "../src/models/user";
+
+const hashPassword = async (password: string) => {
+  return await User.hashPassword(password);
+};
 
 const dataSeed = [
   {
     nome: "root",
     email: "root@email.com",
-    password: "root123",
+    password: hashPassword("root123"),
     isAdmin: true,
     promotions: {
       create: [
@@ -26,13 +31,13 @@ const dataSeed = [
   {
     nome: "test1",
     email: "test1@email.com",
-    password: "test123",
+    password: hashPassword("test123"),
     isAdmin: false,
   },
   {
     nome: "test2",
     email: "test2@email.com",
-    password: "test123",
+    password: hashPassword("test123"),
     isAdmin: false,
     promotions: {
       create: [
