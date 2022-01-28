@@ -29,7 +29,7 @@ class User {
     return this.password;
   }
 
-  async hashPassword(password: string) {
+  static async hashPassword(password: string) {
     const hashPassword = await bcrypt.hash(password, 10);
     return hashPassword;
   }

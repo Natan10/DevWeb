@@ -1,9 +1,8 @@
-import { Request, Response} from "express";
+import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { User } from "../models/user";
 
 class UsersController {
-
   async create(req: Request, res: Response) {
     const prisma = new PrismaClient();
     const { nome, email, password } = req.body;
@@ -24,7 +23,7 @@ class UsersController {
         data: {
           nome: user.Nome,
           email: user.Email,
-          password: await user.hashPassword(password),
+          password: await User.hashPassword(password),
         },
       });
 
@@ -44,15 +43,16 @@ class UsersController {
           id: true,
           email: true,
           nome: true,
-          isAdmin: true
-        }
+          isAdmin: true,
+        },
       });
-      return res.status(200).json(JSON.stringify(allUsers))
+      return res.status(200).json(JSON.stringify(allUsers));
     } catch {
-      return res.status(400).json({message: "Não foi possível enviar todos os usuários"})
+      return res
+        .status(400)
+        .json({ message: "Não foi possível enviar todos os usuários" });
     }
   }
-  
 }
 
 export { UsersController };
