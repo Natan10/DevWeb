@@ -24,15 +24,15 @@ model User {
 }
 
 model Promotion {
-  id        Int      @id @default(autoincrement())
-  nome      String
+  id Int @id @default(autoincrement())
+  nome String
   descricao String?
   preco Float?
   link String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId Int
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 // npx prisma migrate dev -> criar nova migration
