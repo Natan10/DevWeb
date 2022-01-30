@@ -18,38 +18,26 @@ router.get("/entrar", (req: Request, res: Response) => {
 });
 router.post("/entrar", new SessionsController().handler);
 
-router.get(
-  "/admin",
-  new AuthController().handler,
-  async (req: Request, res: Response) => {
-    const data = req.body.isAdmin;
-    return res.render("admin-screen", { data });
-  }
-);
-
 router.get("/", async (req: Request, res: Response) => {
   const promotions = await prisma.promotion.findMany();
 
   return res.render("index", { promotions });
 });
 
+// Testando o middleware
+router.use(new AuthController().handler);
+
+router.get("/admin", async (req: Request, res: Response) => {
+  const data = req.body.isAdmin;
+  return res.render("admin-screen", { data });
+});
+
 router.get("/get-users", new UsersController().getAllUsers);
-router.get(
-  "/user-promotions",
-  new AuthController().handler,
-  new PromotionController().getAllPromotionsById
-);
 
-router.delete(
-  "/user/:id",
-  new AuthController().handler,
-  new UsersController().delete
-);
+router.get("/user-promotions", new PromotionController().getAllPromotionsById);
 
-router.delete(
-  "/promotion/:id",
-  new AuthController().handler,
-  new PromotionController().delete
-);
+router.delete("/user/:id", new UsersController().delete);
+
+router.delete("/promotion/:id", new PromotionController().delete);
 
 export { router };
