@@ -32,6 +32,7 @@ function innerHTMLPromotions(promotion) {
     `;
 }
 
+// Get users
 function loadUsers() {
   fetch("/get-users")
     .then((response) => response.json())
@@ -40,13 +41,15 @@ function loadUsers() {
       users.forEach((user) => {
         const tr = document.createElement("tr");
         tr.innerHTML = innerHTMLUser(user);
+        tr.id = `user_${user.id}`;
         userTable.appendChild(tr);
       });
     });
 }
 
+// GET user promotions
 function loadPromotions() {
-  fetch("/get-promotions")
+  fetch("/user-promotions")
     .then((response) => response.json())
     .then((data) => JSON.parse(data))
     .then((promotions) => {
@@ -63,13 +66,7 @@ function convertData(data) {
 }
 
 
-// TODO 
-async function deleteUser(userId){
-  fetch(`/delete-user/${userId}`,{
-    method: "DELETE",
-  }).then((response) => response.json())
-  .then(data => console.log(data))
-}
+
 
 window.onload = () => {
   loadUsers();
