@@ -27,7 +27,7 @@ class SessionsController {
 
         res.cookie("userToken", token, {
           httpOnly: true,
-          expires: new Date(120000 + Date.now()),
+          expires: new Date(2000000 + Date.now()),
         });
 
         return res.redirect("/admin");

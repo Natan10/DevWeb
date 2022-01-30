@@ -27,7 +27,7 @@ function innerHTMLPromotions(promotion) {
       <button class="btn btn-primary">
         Editar
       </button>
-      <button class="btn btn-danger">Deletar</button>
+      <button class="btn btn-danger promotion_delete_btn" onclick="deletePromotion(${promotion.id})">Deletar</button>
     </td>
     `;
 }
@@ -56,6 +56,8 @@ function loadPromotions() {
       promotions.forEach((promotion) => {
         const tr = document.createElement("tr");
         tr.innerHTML = innerHTMLPromotions(promotion);
+        tr.id = `promotion_${promotion.id}`;
+        tr.classList.add(`promotion-user-id_${promotion.userId}`);
         promotionTable.appendChild(tr);
       });
     });
@@ -64,9 +66,6 @@ function loadPromotions() {
 function convertData(data) {
   return data.slice(0, 10).split("-").reverse().join("/");
 }
-
-
-
 
 window.onload = () => {
   loadUsers();
