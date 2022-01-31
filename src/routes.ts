@@ -28,13 +28,14 @@ router.get("/", async (req: Request, res: Response) => {
   return res.render("index", { promotions });
 });
 
-// Testando o middleware
+// Middleware
 router.use(new AuthController().handler);
 
 router.get("/admin", async (req: Request, res: Response) => {
   logger.info("GET /admin");
   const data = req.body.isAdmin;
-  return res.render("admin-screen", { data });
+  const promotions = await prisma.promotion.findMany();
+  return res.render("admin-screen", { data, promotions });
 });
 
 router.get("/get-users", new UsersController().getAllUsers);
