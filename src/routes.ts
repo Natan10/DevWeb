@@ -4,21 +4,25 @@ import { SessionsController } from "./controllers/SessionsController";
 import { AuthController } from "./controllers/AuthController";
 import { PromotionController } from "./controllers/PromotionsController";
 import { PrismaClient } from "@prisma/client";
+import logger from "./logger/logger";
 
 const router = Router();
 const prisma = new PrismaClient();
 
 router.get("/cadastrar", (req: Request, res: Response) => {
+  logger.info("GET /cadastrar");
   return res.render("signup-screen");
 });
 router.post("/cadastrar", new UsersController().create);
 
 router.get("/entrar", (req: Request, res: Response) => {
+  logger.info("GET /entrar");
   return res.render("login-screen");
 });
 router.post("/entrar", new SessionsController().handler);
 
 router.get("/", async (req: Request, res: Response) => {
+  logger.info("GET /");
   const promotions = await prisma.promotion.findMany();
 
   return res.render("index", { promotions });
@@ -28,6 +32,7 @@ router.get("/", async (req: Request, res: Response) => {
 router.use(new AuthController().handler);
 
 router.get("/admin", async (req: Request, res: Response) => {
+  logger.info("GET /admin");
   const data = req.body.isAdmin;
   return res.render("admin-screen", { data });
 });

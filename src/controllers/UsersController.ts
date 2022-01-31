@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { User } from "../models/user";
+import logger from "../logger/logger";
 
 class UsersController {
   async create(req: Request, res: Response) {
@@ -15,6 +16,7 @@ class UsersController {
       });
 
       if (userExist) {
+        logger.error(`POST /cadastrar - User já existe`);
         return res.status(400).json({ message: "User já existe!" });
       }
 
@@ -27,9 +29,12 @@ class UsersController {
         },
       });
 
+      logger.info(`POST /cadastrar - User criado`);
+
       res.setHeader("Content-Type", "text/html");
       return res.redirect("/entrar");
     } catch (err) {
+      logger.error(err);
       return res.status(400).json({ error: "Erro ao criar usuário" });
     }
   }
@@ -41,6 +46,7 @@ class UsersController {
 
     try {
       if (Number(id) === Number(userId)) {
+        logger.warn(`DELETE /user - User não pode se deletar`);
         return res
           .status(400)
           .json({ message: "Usuário não pode se deletar!" });
@@ -53,10 +59,12 @@ class UsersController {
       });
 
       if (!userExist) {
+        logger.info(`DELETE /user - User não encontrado`);
         return res.status(400).json({ message: "User não encontrado!" });
       }
 
       if (!isAdmin) {
+        logger.info(`DELETE /user - User não autorizado`);
         return res.status(404).json({ message: "Usuário não authorizado!" });
       }
 
@@ -66,8 +74,10 @@ class UsersController {
         },
       });
 
+      logger.info(`DELETE /user - User deletado`);
       return res.status(204).send();
     } catch (err) {
+      logger.error(err);
       return res
         .status(400)
         .json({ error: "Erro ao deletar usuário, tente novamente!" });
@@ -86,8 +96,11 @@ class UsersController {
           isAdmin: true,
         },
       });
+
+      logger.info("GET /user - All users");
       return res.status(200).json(JSON.stringify(allUsers));
-    } catch {
+    } catch (err) {
+      logger.error(err);
       return res
         .status(400)
         .json({ message: "Não foi possível enviar todos os usuários" });

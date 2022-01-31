@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient, Promotion } from "@prisma/client";
+import logger from "../logger/logger";
 
 class PromotionController {
   async getAllPromotions(req: Request, res: Response) {
@@ -15,7 +16,8 @@ class PromotionController {
         },
       });
       return res.status(200).json(JSON.stringify(allPromotions));
-    } catch {
+    } catch (err) {
+      logger.error(err);
       return res
         .status(400)
         .json({ message: "Não foi possível enviar todos as Promoções" });
@@ -38,9 +40,9 @@ class PromotionController {
           },
         });
       }
-
       return res.status(200).json(JSON.stringify(promotions));
-    } catch {
+    } catch (err) {
+      logger.error(err);
       return res
         .status(400)
         .json({ message: "Não foi possível carregar as Promoções" });
@@ -64,11 +66,15 @@ class PromotionController {
             id: promotion.id,
           },
         });
+
+        logger.info("DELETE /promotion - Promoçao deletada");
         return res.status(204).send();
       }
 
+      logger.info("DELETE /promotion - Promoçao não encontrada");
       return res.status(400).json({ message: "Promoção não encontrada!" });
     } catch (err) {
+      logger.error(err);
       return res
         .status(400)
         .json({ error: "Erro ao deletar promoção, tente novamente!" });

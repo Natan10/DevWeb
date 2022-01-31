@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { verify } from "jsonwebtoken";
+import logger from "../logger/logger";
 
 interface TokenProps {
   id: number;
@@ -14,7 +15,6 @@ class AuthController {
 
     try {
       const authToken = req.cookies.userToken;
-      // const authToken = req.headers.authorization?.split(" ")[1];
 
       if (!authToken) {
         throw new Error("Authentication failed!");
@@ -28,12 +28,13 @@ class AuthController {
 
       if (user) {
         req.body.userId = user.id;
-        req.body.isAdmin = user.isAdmin
+        req.body.isAdmin = user.isAdmin;
         next();
       } else {
         return res.redirect("/entrar");
       }
     } catch (err) {
+      logger.error(err);
       return res.redirect("/entrar");
     }
   }

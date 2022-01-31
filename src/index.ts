@@ -5,6 +5,7 @@ import path from "path";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import expressLayouts from "express-ejs-layouts";
+import logger from "./logger/logger";
 
 const app = express();
 
@@ -18,5 +19,5 @@ app.use(cookieParser());
 app.use(router);
 
 app.listen(4000, () => {
-  console.log(`Server is runing localhost:${4000}!`);
+  logger.info(`Server is runing localhost:${4000}!`);
 });
