@@ -3,6 +3,61 @@ import { PrismaClient, Promotion } from "@prisma/client";
 import logger from "../logger/logger";
 
 class PromotionController {
+
+  async create(req: Request, res: Response) {
+    const prisma = new PrismaClient();
+    const { name, price, link, description, userId } = req.body;
+
+    try {
+      await prisma.promotion.create({
+        data: {
+          nome: name,
+          preco: Number(price),
+          link: link,
+          descricao: description,
+          userId: userId
+        }
+      })
+
+      logger.info(`POST /new-promotion - Promoção criada`);
+
+      res.setHeader("Content-Type", "text/html");
+      return res.redirect("/admin");
+    } catch (e) {
+      logger.error(e);
+      return res.status(400).json({ error: "Erro ao criar promoção" });
+    }
+  } 
+
+  async update(req: Request, res: Response) {
+    const prisma = new PrismaClient();
+
+    const { name, price, link, description, id, userId } = req.body;
+
+    try {
+      await prisma.promotion.update({
+        data: {
+          nome: name,
+          preco: Number(price),
+          link: link,
+          descricao: description,
+          userId: userId
+        },
+        where: {
+          id: Number(id)
+        }
+      })
+
+      logger.info(`PATCH /edit-promotion - Promoção editada`);
+
+      res.setHeader("Content-Type", "text/html");
+      return res.redirect("/admin");
+    } catch (e) {
+      logger.error(e);
+      return res.status(400).json({ error: "Erro ao criar promoção" });
+    }
+  }
+
   async getAllPromotions(req: Request, res: Response) {
     const prisma = new PrismaClient();
 

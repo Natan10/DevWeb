@@ -1,0 +1,24 @@
+.addForm .container {
+  display: flex;
+  justify-content: center;
+}
+
+.registerPromotion {
+  width: 40%;
+}
+
+.registerPromotion .field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.registerPromotion form {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 30px;
+  gap: 12px;
+}
