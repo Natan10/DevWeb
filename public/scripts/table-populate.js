@@ -11,7 +11,9 @@ function innerHTMLUser(user) {
       <button class="btn btn-primary">
         Editar
       </button>
-      <button class="btn btn-danger user_delete_btn" onclick="deleteUser(${user.id})">Deletar</button>
+      <button class="btn btn-danger user_delete_btn" onclick="deleteUser(${
+        user.id
+      })">Deletar</button>
     </td>
     `;
 }
@@ -20,14 +22,21 @@ function innerHTMLPromotions(promotion) {
   return `
     <td>${promotion.id}</td>
     <td>${promotion.nome}</td>
-    <td>${promotion.preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
+    <td>${promotion.preco.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</td>
     <td>${promotion.descricao}</td>
     <td>${convertData(promotion.createdAt)}</td>
     <td class="action" colspan="2">
-      <button class="btn btn-primary">
-        Editar
-      </button>
-      <button class="btn btn-danger promotion_delete_btn" onclick="deletePromotion(${promotion.id})">Deletar</button>
+      <a href="/edit-promotion?id=${promotion.id}">
+        <button class="btn btn-primary">
+          Editar
+        </button>
+      </a>
+      <button class="btn btn-danger promotion_delete_btn" onclick="deletePromotion(${
+        promotion.id
+      })">Deletar</button>
     </td>
     `;
 }

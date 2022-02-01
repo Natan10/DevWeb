@@ -56,6 +56,24 @@ router.get("/get-users", new UsersController().getAllUsers);
 
 router.get("/user-promotions", new PromotionController().getAllPromotionsById);
 
+router.get("/new-promotion", (req: Request, res: Response) => {
+  res.render("addPromotions")
+});
+
+router.post("/new-promotion", new PromotionController().create)
+
+router.get("/edit-promotion", async (req: Request, res: Response) => {
+  const id = req.query.id
+  const promotion = await prisma.promotion.findFirst({
+    where: {
+      id: Number(id)
+    }
+  });
+  res.render("editPromotions", { promotion, id })
+})
+
+router.post("/edit-promotion", new PromotionController().update)
+
 router.delete("/user/:id", new UsersController().delete);
 
 router.delete("/promotion/:id", new PromotionController().delete);

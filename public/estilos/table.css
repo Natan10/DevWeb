@@ -34,3 +34,8 @@ table td,
 table th {
   padding: 1rem;
 }
+
+.promo-table a {
+  text-decoration: none;
+  color: #fff;
+}
