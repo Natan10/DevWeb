@@ -15,10 +15,6 @@ router.get("/cadastrar", (req: Request, res: Response) => {
 });
 router.post("/cadastrar", new UsersController().create);
 
-router.get("/editar", (req: Request, res: Response) => {
-  return res.render("edit-prof");
-});
-
 router.get("/entrar", (req: Request, res: Response) => {
   logger.info("GET /entrar");
   return res.render("login-screen");
@@ -35,12 +31,26 @@ router.get("/", async (req: Request, res: Response) => {
 // Middleware
 router.use(new AuthController().handler);
 
-router.get("/admin", async (req: Request, res: Response) => {
+router.get("/admin", (req: Request, res: Response) => {
   logger.info("GET /admin");
   const data = req.body.isAdmin;
-  const promotions = await prisma.promotion.findMany();
-  return res.render("admin-screen", { data, promotions });
+  return res.render("admin-screen", { data });
 });
+
+router.get("/editar", async (req: Request, res: Response) => {
+  const { userId } = req.body;
+  const prisma = new PrismaClient();
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: Number(userId),
+    },
+  });
+
+  return res.render("edit-prof", { user });
+});
+
+router.patch("/user", new UsersController().update);
 
 router.get("/get-users", new UsersController().getAllUsers);
 

@@ -1,7 +1,7 @@
-var nomeField = document.getElementById('name');
-var emailField = document.getElementById('email');
-var passwordField = document.getElementById('password');
-var form = document.getElementById('formEdit');
+var nomeField = document.getElementById('edit_name');
+var emailField = document.getElementById('edit_email');
+var passwordField = document.getElementById('edit_password');
+var form = document.getElementById('edit-profile__form');
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -10,7 +10,7 @@ form.addEventListener('submit', function(e){
     let email = emailField.value;
     let password = passwordField.value;
   
-    fetch('/editar',{
+    fetch('/user',{
       method: 'PATCH',
       body: JSON.stringify({
         nome,email,password
@@ -19,7 +19,7 @@ form.addEventListener('submit', function(e){
         'content-type': 'application/json'
       }
     }).then(data => {
-      if(data.status !== 200){ 
+      if(data.status !== 200 && data.status !== 204){ 
         throw new Error();
       }
       iziToast.success({
@@ -30,10 +30,9 @@ form.addEventListener('submit', function(e){
     }).catch(error => {
       iziToast.error({
           title: 'Erro',
-          message: 'Erro! O email já existe, tentar novamente!',
+          message: 'Erro ao atualizar dados!',
           position: 'bottomLeft'
       });
-      cleanFields();
     })
 })
   
@@ -68,8 +67,11 @@ passwordField.addEventListener('input', function(){
   validateField(password.length <= 5, passwordField);
 },false);
   
-function cleanFields(){
-    resetStateField(nomeField);
-    resetStateField(emailField);
-    resetStateField(passwordField);
-}
+// function cleanFields(){
+//   resetStateField(nomeField);
+//   resetStateField(emailField);
+//   resetStateField(passwordField);
+// }
+
+
+

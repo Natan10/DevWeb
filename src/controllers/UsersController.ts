@@ -84,6 +84,37 @@ class UsersController {
     }
   }
 
+  async update(req: Request, res: Response) {
+    const prisma = new PrismaClient();
+    const { userId, nome, email, password } = req.body;
+
+    try {
+      const info = {
+        nome: nome !== "" ? nome : undefined,
+        email: email !== "" ? email : undefined,
+        password:
+          password !== "" ? await User.hashPassword(password) : undefined,
+      };
+
+      const user = await prisma.user.update({
+        where: {
+          id: Number(userId),
+        },
+        data: {
+          ...info,
+        },
+      });
+
+      logger.info(`PATCH /user - User atualizado`);
+      return res.status(204).send();
+    } catch (err) {
+      logger.error(err);
+      return res
+        .status(400)
+        .json({ error: "Erro ao atualizar informações, tente novamente!" });
+    }
+  }
+
   async getAllUsers(req: Request, res: Response) {
     const prisma = new PrismaClient();
 
