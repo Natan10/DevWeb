@@ -79,10 +79,9 @@ class UserController {
 
     try {
       const info = {
-        nome: nome !== "" ? nome : undefined,
-        email: email !== "" ? email : undefined,
-        password:
-          password !== "" ? await Utils.hashPassword(password) : undefined,
+        nome: nome,
+        email: email,
+        password: password ? await Utils.hashPassword(password) : undefined,
       };
 
       await prisma.user.update({
@@ -111,6 +110,7 @@ class UserController {
           email: true,
           nome: true,
           isAdmin: true,
+          createdAt: true,
         },
       });
 

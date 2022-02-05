@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { PrismaClient, Promotion } from "@prisma/client";
-import logger from "../logger/logger";
 
 class PromotionController {
   async create(req: Request, res: Response) {
@@ -8,7 +7,7 @@ class PromotionController {
     const { name, price, link, description, userId } = req.body;
 
     try {
-      await prisma.promotion.create({
+      const promotionCreated = await prisma.promotion.create({
         data: {
           nome: name,
           preco: Number(price),
@@ -18,12 +17,8 @@ class PromotionController {
         },
       });
 
-      logger.info(`POST /new-promotion - Promoção criada`);
-
-      res.setHeader("Content-Type", "text/html");
-      return res.redirect("/admin");
+      return res.status(201).json({ promotion: promotionCreated });
     } catch (e) {
-      logger.error(e);
       return res.status(400).json({ error: "Erro ao criar promoção" });
     }
   }
@@ -47,13 +42,9 @@ class PromotionController {
         },
       });
 
-      logger.info(`PATCH /edit-promotion - Promoção editada`);
-
-      res.setHeader("Content-Type", "text/html");
-      return res.redirect("/admin");
+      return res.status(200).send();
     } catch (e) {
-      logger.error(e);
-      return res.status(400).json({ error: "Erro ao criar promoção" });
+      return res.status(400).json({ error: "Erro ao editar promoção" });
     }
   }
 
@@ -69,9 +60,8 @@ class PromotionController {
           createdAt: true,
         },
       });
-      return res.status(200).json(JSON.stringify(allPromotions));
+      return res.status(200).json({ promotions: allPromotions });
     } catch (err) {
-      logger.error(err);
       return res
         .status(400)
         .json({ message: "Não foi possível enviar todos as Promoções" });
@@ -94,9 +84,8 @@ class PromotionController {
           },
         });
       }
-      return res.status(200).json(JSON.stringify(promotions));
+      return res.status(200).json({ promotions });
     } catch (err) {
-      logger.error(err);
       return res
         .status(400)
         .json({ message: "Não foi possível carregar as Promoções" });
@@ -121,14 +110,11 @@ class PromotionController {
           },
         });
 
-        logger.info("DELETE /promotion - Promoçao deletada");
         return res.status(204).send();
       }
 
-      logger.info("DELETE /promotion - Promoçao não encontrada");
       return res.status(400).json({ message: "Promoção não encontrada!" });
     } catch (err) {
-      logger.error(err);
       return res
         .status(400)
         .json({ error: "Erro ao deletar promoção, tente novamente!" });
@@ -136,4 +122,4 @@ class PromotionController {
   }
 }
 
-export { PromotionController };
+export default PromotionController;
