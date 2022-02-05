@@ -1,4 +1,5 @@
 import { Router } from "express";
+import SessionsController from "./controllers/SessionController";
 import UserController from "./controllers/UserController";
 import PromotionController from "./controllers/PromotionController";
 
@@ -6,8 +7,10 @@ const router = Router();
 
 const User = new UserController();
 const Promotion = new PromotionController();
+const Session = new SessionsController();
 
 //Login
+router.post("/login", Session.handler);
 
 // User
 router.get("/user", User.getAllUsers);
