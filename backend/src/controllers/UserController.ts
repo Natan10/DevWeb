@@ -2,15 +2,14 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { Utils } from "../utils/passwordHash";
 
-class UsersController {
-  constructor(private readonly prismaClient: PrismaClient) {}
-
+class UserController {
   async create(req: Request, res: Response) {
     const prisma = new PrismaClient();
+
     const { nome, email, password } = req.body;
 
     try {
-      const userExist = await this.prismaClient.user.findFirst({
+      const userExist = await prisma.user.findFirst({
         where: {
           email,
         },
@@ -20,7 +19,7 @@ class UsersController {
         return res.status(400).json({ message: "User já existe!" });
       }
 
-      const createdUser = await this.prismaClient.user.create({
+      const createdUser = await prisma.user.create({
         data: {
           nome: nome,
           email: email,
@@ -35,6 +34,7 @@ class UsersController {
   }
 
   async delete(req: Request, res: Response) {
+    const prisma = new PrismaClient();
     const { id } = req.params;
     const { userId, isAdmin } = req.body;
 
@@ -45,7 +45,7 @@ class UsersController {
           .json({ message: "Usuário não pode se deletar!" });
       }
 
-      const userExist = await this.prismaClient.user.findFirst({
+      const userExist = await prisma.user.findFirst({
         where: {
           id: Number(id),
         },
@@ -59,7 +59,7 @@ class UsersController {
         return res.status(404).json({ message: "Usuário não authorizado!" });
       }
 
-      await this.prismaClient.user.delete({
+      await prisma.user.delete({
         where: {
           id: userExist.id,
         },
@@ -74,6 +74,7 @@ class UsersController {
   }
 
   async update(req: Request, res: Response) {
+    const prisma = new PrismaClient();
     const { userId, nome, email, password } = req.body;
 
     try {
@@ -84,7 +85,7 @@ class UsersController {
           password !== "" ? await Utils.hashPassword(password) : undefined,
       };
 
-      await this.prismaClient.user.update({
+      await prisma.user.update({
         where: {
           id: Number(userId),
         },
@@ -102,8 +103,9 @@ class UsersController {
   }
 
   async getAllUsers(req: Request, res: Response) {
+    const prisma = new PrismaClient();
     try {
-      const allUsers = await this.prismaClient.user.findMany({
+      const allUsers = await prisma.user.findMany({
         select: {
           id: true,
           email: true,
@@ -121,4 +123,4 @@ class UsersController {
   }
 }
 
-export default UsersController;
+export default UserController;
