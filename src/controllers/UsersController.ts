@@ -96,7 +96,7 @@ class UsersController {
           password !== "" ? await User.hashPassword(password) : undefined,
       };
 
-      const user = await prisma.user.update({
+      await prisma.user.update({
         where: {
           id: Number(userId),
         },
