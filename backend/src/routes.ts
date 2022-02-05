@@ -2,15 +2,20 @@ import { Router } from "express";
 import SessionsController from "./controllers/SessionController";
 import UserController from "./controllers/UserController";
 import PromotionController from "./controllers/PromotionController";
+import AuthController from "./controllers/AuthController";
 
 const router = Router();
 
 const User = new UserController();
 const Promotion = new PromotionController();
 const Session = new SessionsController();
+const Auth = new AuthController();
 
 //Login
 router.post("/login", Session.handler);
+
+// Auth Middleware
+router.use(Auth.handler);
 
 // User
 router.get("/user", User.getAllUsers);

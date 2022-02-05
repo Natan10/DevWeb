@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient, Promotion } from "@prisma/client";
+import { HttpStatus } from "../utils/httpStatusCode";
 
 class PromotionController {
   async create(req: Request, res: Response) {
@@ -17,9 +18,13 @@ class PromotionController {
         },
       });
 
-      return res.status(201).json({ promotion: promotionCreated });
+      return res
+        .status(HttpStatus.Created)
+        .json({ promotion: promotionCreated });
     } catch (e) {
-      return res.status(400).json({ error: "Erro ao criar promoção" });
+      return res
+        .status(HttpStatus.BadRequest)
+        .json({ error: "Erro ao criar promoção" });
     }
   }
 
@@ -42,9 +47,11 @@ class PromotionController {
         },
       });
 
-      return res.status(200).send();
+      return res.status(HttpStatus.OK).send();
     } catch (e) {
-      return res.status(400).json({ error: "Erro ao editar promoção" });
+      return res
+        .status(HttpStatus.BadRequest)
+        .json({ error: "Erro ao editar promoção" });
     }
   }
 
@@ -60,10 +67,10 @@ class PromotionController {
           createdAt: true,
         },
       });
-      return res.status(200).json({ promotions: allPromotions });
+      return res.status(HttpStatus.OK).json({ promotions: allPromotions });
     } catch (err) {
       return res
-        .status(400)
+        .status(HttpStatus.BadRequest)
         .json({ message: "Não foi possível enviar todos as Promoções" });
     }
   }
@@ -84,10 +91,10 @@ class PromotionController {
           },
         });
       }
-      return res.status(200).json({ promotions });
+      return res.status(HttpStatus.OK).json({ promotions });
     } catch (err) {
       return res
-        .status(400)
+        .status(HttpStatus.BadRequest)
         .json({ message: "Não foi possível carregar as Promoções" });
     }
   }
@@ -110,13 +117,15 @@ class PromotionController {
           },
         });
 
-        return res.status(204).send();
+        return res.status(HttpStatus.NoContent).send();
       }
 
-      return res.status(400).json({ message: "Promoção não encontrada!" });
+      return res
+        .status(HttpStatus.NotFound)
+        .json({ message: "Promoção não encontrada!" });
     } catch (err) {
       return res
-        .status(400)
+        .status(HttpStatus.BadRequest)
         .json({ error: "Erro ao deletar promoção, tente novamente!" });
     }
   }

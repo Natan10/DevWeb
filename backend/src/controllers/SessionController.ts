@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { Utils } from "../utils/passwordHash";
 import { sign } from "jsonwebtoken";
+import { HttpStatus } from "../utils/httpStatusCode";
 
 class SessionController {
   async handler(req: Request, res: Response) {
@@ -15,7 +16,9 @@ class SessionController {
       });
 
       if (!user) {
-        return res.status(404).json({ message: "Usuário não encontrado!" });
+        return res
+          .status(HttpStatus.NotFound)
+          .json({ message: "Usuário não encontrado!" });
       }
 
       if (await Utils.comparePassword(password, user.password)) {
@@ -26,12 +29,16 @@ class SessionController {
           process.env.JWT_SECRET?.toString() || ""
         );
 
-        return res.status(200).json({ token });
+        return res.status(HttpStatus.OK).json({ token });
       } else {
-        return res.status(401).json({ message: "Password incorreto!" });
+        return res
+          .status(HttpStatus.Unauthorized)
+          .json({ message: "Password incorreto!" });
       }
     } catch (err) {
-      return res.status(500).json({ error: "Erro ao logar!" });
+      return res
+        .status(HttpStatus.BadRequest)
+        .json({ error: "Erro ao logar!" });
     }
   }
 }

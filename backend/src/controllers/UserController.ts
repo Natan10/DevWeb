@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { Utils } from "../utils/passwordHash";
+import { HttpStatus } from "../utils/httpStatusCode";
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -16,7 +17,9 @@ class UserController {
       });
 
       if (userExist) {
-        return res.status(400).json({ message: "User já existe!" });
+        return res
+          .status(HttpStatus.BadRequest)
+          .json({ message: "User já existe!" });
       }
 
       const createdUser = await prisma.user.create({
@@ -27,9 +30,11 @@ class UserController {
         },
       });
 
-      return res.status(201).json({ user: createdUser });
+      return res.status(HttpStatus.Created).json({ user: createdUser });
     } catch (err) {
-      return res.status(400).json({ error: "Erro ao criar usuário" });
+      return res
+        .status(HttpStatus.BadRequest)
+        .json({ error: "Erro ao criar usuário" });
     }
   }
 
@@ -41,7 +46,7 @@ class UserController {
     try {
       if (Number(id) === Number(userId)) {
         return res
-          .status(400)
+          .status(HttpStatus.NotAcceptable)
           .json({ message: "Usuário não pode se deletar!" });
       }
 
@@ -52,11 +57,15 @@ class UserController {
       });
 
       if (!userExist) {
-        return res.status(400).json({ message: "User não encontrado!" });
+        return res
+          .status(HttpStatus.NotFound)
+          .json({ message: "User não encontrado!" });
       }
 
       if (!isAdmin) {
-        return res.status(404).json({ message: "Usuário não authorizado!" });
+        return res
+          .status(HttpStatus.Unauthorized)
+          .json({ message: "Usuário não authorizado!" });
       }
 
       await prisma.user.delete({
@@ -65,10 +74,10 @@ class UserController {
         },
       });
 
-      return res.status(204).send();
+      return res.status(HttpStatus.OK).send();
     } catch (err) {
       return res
-        .status(400)
+        .status(HttpStatus.BadRequest)
         .json({ error: "Erro ao deletar usuário, tente novamente!" });
     }
   }
@@ -93,10 +102,10 @@ class UserController {
         },
       });
 
-      return res.status(204).send();
+      return res.status(HttpStatus.NoContent).send();
     } catch (err) {
       return res
-        .status(400)
+        .status(HttpStatus.BadRequest)
         .json({ error: "Erro ao atualizar informações, tente novamente!" });
     }
   }
