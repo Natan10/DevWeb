@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
+import { prisma } from "../../config/db";
 import { verify } from "jsonwebtoken";
 import { HttpStatus } from "../utils/httpStatusCode";
 
@@ -10,7 +10,6 @@ interface TokenProps {
 
 class AuthController {
   async handler(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     const secret = process.env.JWT_SECRET?.toString() || "";
 
     try {

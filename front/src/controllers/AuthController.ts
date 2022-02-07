@@ -1,18 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "@prisma/client";
-import { verify } from "jsonwebtoken";
 import logger from "../logger/logger";
-
-interface TokenProps {
-  id: number;
-  iat: number;
-}
+import api from "../../config/api";
 
 class AuthController {
   async handler(req: Request, res: Response, next: NextFunction) {
-    const prisma = new PrismaClient();
-    const secret = process.env.JWT_SECRET?.toString() || "";
-
     try {
       const authToken = req.cookies.userToken;
 
@@ -20,11 +11,12 @@ class AuthController {
         throw new Error("Authentication failed!");
       }
 
-      const { id } = verify(authToken, secret) as TokenProps;
-
-      const user = await prisma.user.findFirst({
-        where: { id },
+      const response = await api.post("/auth", {
+        token: authToken,
       });
+
+      const { data } = response;
+      const { user } = data;
 
       if (user) {
         req.body.userId = user.id;

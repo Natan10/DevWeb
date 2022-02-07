@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { PrismaClient, Promotion } from "@prisma/client";
+import { prisma } from "../../config/db";
+import { Promotion } from "@prisma/client";
 import { HttpStatus } from "../utils/httpStatusCode";
 
 class PromotionController {
   async create(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     const { name, price, link, description, userId } = req.body;
 
     try {
@@ -29,9 +29,8 @@ class PromotionController {
   }
 
   async update(req: Request, res: Response) {
-    const prisma = new PrismaClient();
-
-    const { name, price, link, description, id, userId } = req.body;
+    const { id } = req.params;
+    const { name, price, link, description, userId } = req.body;
 
     try {
       await prisma.promotion.update({
@@ -56,17 +55,8 @@ class PromotionController {
   }
 
   async getAllPromotions(req: Request, res: Response) {
-    const prisma = new PrismaClient();
-
     try {
-      const allPromotions = await prisma.promotion.findMany({
-        select: {
-          id: true,
-          nome: true,
-          descricao: true,
-          createdAt: true,
-        },
-      });
+      const allPromotions = await prisma.promotion.findMany();
       return res.status(HttpStatus.OK).json({ promotions: allPromotions });
     } catch (err) {
       return res
@@ -76,8 +66,6 @@ class PromotionController {
   }
 
   async getAllPromotionsById(req: Request, res: Response) {
-    const prisma = new PrismaClient();
-
     const { userId, isAdmin } = req.body;
 
     try {
@@ -100,7 +88,6 @@ class PromotionController {
   }
 
   async delete(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     const { id } = req.params;
 
     try {
@@ -117,7 +104,7 @@ class PromotionController {
           },
         });
 
-        return res.status(HttpStatus.NoContent).send();
+        return res.status(HttpStatus.OK).send();
       }
 
       return res
@@ -129,6 +116,25 @@ class PromotionController {
         .json({ error: "Erro ao deletar promoção, tente novamente!" });
     }
   }
-}
 
+  async getPromotion(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const promotion = await prisma.promotion.findUnique({
+        where: {
+          id: Number(id),
+        },
+      });
+
+      if (!promotion) {
+        return res.status(HttpStatus.NotFound).send();
+      }
+      return res.status(HttpStatus.OK).json({ promotion });
+    } catch (err) {
+      res
+        .status(HttpStatus.BadRequest)
+        .json({ message: "Não foi possível realizar a requisição!" });
+    }
+  }
+}
 export default PromotionController;

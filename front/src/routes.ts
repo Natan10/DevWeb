@@ -5,6 +5,7 @@ import { AuthController } from "./controllers/AuthController";
 import { PromotionController } from "./controllers/PromotionsController";
 import { PrismaClient } from "@prisma/client";
 import logger from "./logger/logger";
+import api from "../config/api";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -23,8 +24,16 @@ router.post("/entrar", new SessionsController().handler);
 
 router.get("/", async (req: Request, res: Response) => {
   logger.info("GET /");
-  const promotions = await prisma.promotion.findMany();
 
+  let promotions = [];
+
+  try {
+    const { data } = await api.get("/promotion");
+    promotions = data.promotions;
+  } catch (err) {
+    logger.error(err);
+    promotions = [];
+  }
   return res.render("index", { promotions });
 });
 
@@ -37,18 +46,7 @@ router.get("/admin", (req: Request, res: Response) => {
   return res.render("admin-screen", { data });
 });
 
-router.get("/editar", async (req: Request, res: Response) => {
-  const { userId } = req.body;
-  const prisma = new PrismaClient();
-
-  const user = await prisma.user.findUnique({
-    where: {
-      id: Number(userId),
-    },
-  });
-
-  return res.render("edit-prof", { user });
-});
+router.get("/editar", new UsersController().editUser);
 
 router.patch("/user", new UsersController().update);
 
@@ -57,22 +55,14 @@ router.get("/get-users", new UsersController().getAllUsers);
 router.get("/user-promotions", new PromotionController().getAllPromotionsById);
 
 router.get("/new-promotion", (req: Request, res: Response) => {
-  res.render("addPromotions")
+  res.render("addPromotions");
 });
 
-router.post("/new-promotion", new PromotionController().create)
+router.post("/new-promotion", new PromotionController().create);
 
-router.get("/edit-promotion", async (req: Request, res: Response) => {
-  const id = req.query.id
-  const promotion = await prisma.promotion.findFirst({
-    where: {
-      id: Number(id)
-    }
-  });
-  res.render("editPromotions", { promotion, id })
-})
+router.get("/edit-promotion", new PromotionController().editPromotion);
 
-router.post("/edit-promotion", new PromotionController().update)
+router.post("/edit-promotion", new PromotionController().update);
 
 router.delete("/user/:id", new UsersController().delete);
 

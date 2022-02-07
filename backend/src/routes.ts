@@ -20,14 +20,16 @@ router.post("/auth", Auth.handler);
 // User
 router.post("/user", User.create);
 router.get("/user", User.getAllUsers);
+router.get("/user/:id", User.getUser);
 router.patch("/user", User.update);
 router.delete("/user/:id", User.delete);
 
 // Promotion
 router.get("/promotion", Promotion.getAllPromotions);
 router.get("/promotionId", Promotion.getAllPromotionsById);
+router.get("/promotion/:id", Promotion.getPromotion);
 router.post("/promotion", Promotion.create);
-router.put("/promotion", Promotion.update);
+router.put("/promotion/:id", Promotion.update);
 router.delete("/promotion/:id", Promotion.delete);
 
 export default router;

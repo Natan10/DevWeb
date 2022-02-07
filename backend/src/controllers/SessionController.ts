@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../config/db";
 import { Utils } from "../utils/passwordHash";
 import { sign } from "jsonwebtoken";
 import { HttpStatus } from "../utils/httpStatusCode";
 
 class SessionController {
   async handler(req: Request, res: Response) {
-    const prisma = new PrismaClient();
-
     const { email, password } = req.body;
 
     try {

@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../config/db";
 import { Utils } from "../utils/passwordHash";
 import { HttpStatus } from "../utils/httpStatusCode";
 
 class UserController {
   async create(req: Request, res: Response) {
-    const prisma = new PrismaClient();
-
     const { nome, email, password } = req.body;
 
     try {
@@ -39,7 +37,6 @@ class UserController {
   }
 
   async delete(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     const { id } = req.params;
     const { userId, isAdmin } = req.body;
 
@@ -83,7 +80,6 @@ class UserController {
   }
 
   async update(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     const { userId, nome, email, password } = req.body;
 
     try {
@@ -92,6 +88,8 @@ class UserController {
         email: email,
         password: password ? await Utils.hashPassword(password) : undefined,
       };
+
+      console.log("infos", info);
 
       await prisma.user.update({
         where: {
@@ -111,7 +109,6 @@ class UserController {
   }
 
   async getAllUsers(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     try {
       const allUsers = await prisma.user.findMany({
         select: {
@@ -128,6 +125,26 @@ class UserController {
       return res
         .status(HttpStatus.BadRequest)
         .json({ message: "Não foi possível enviar todos os usuários" });
+    }
+  }
+
+  async getUser(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const user = await prisma.user.findUnique({
+        where: {
+          id: Number(id),
+        },
+      });
+
+      if (!user) {
+        return res.status(HttpStatus.NotFound).send();
+      }
+      return res.status(HttpStatus.OK).json({ user });
+    } catch (err) {
+      res
+        .status(HttpStatus.BadRequest)
+        .json({ message: "Não foi possível realizar a requisição!" });
     }
   }
 }

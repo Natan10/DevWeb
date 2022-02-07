@@ -23,37 +23,14 @@ class UsersController {
   }
 
   async delete(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     const { id } = req.params;
     const { userId, isAdmin } = req.body;
 
     try {
-      if (Number(id) === Number(userId)) {
-        logger.warn(`DELETE /user - User não pode se deletar`);
-        return res
-          .status(400)
-          .json({ message: "Usuário não pode se deletar!" });
-      }
-
-      const userExist = await prisma.user.findFirst({
-        where: {
-          id: Number(id),
-        },
-      });
-
-      if (!userExist) {
-        logger.info(`DELETE /user - User não encontrado`);
-        return res.status(400).json({ message: "User não encontrado!" });
-      }
-
-      if (!isAdmin) {
-        logger.info(`DELETE /user - User não autorizado`);
-        return res.status(404).json({ message: "Usuário não authorizado!" });
-      }
-
-      await prisma.user.delete({
-        where: {
-          id: userExist.id,
+      await api.delete(`/user/${id}`, {
+        data: {
+          userId,
+          isAdmin,
         },
       });
 
@@ -68,9 +45,7 @@ class UsersController {
   }
 
   async update(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     const { userId, nome, email, password } = req.body;
-
     try {
       const info = {
         nome: nome !== "" ? nome : undefined,
@@ -79,13 +54,9 @@ class UsersController {
           password !== "" ? await User.hashPassword(password) : undefined,
       };
 
-      await prisma.user.update({
-        where: {
-          id: Number(userId),
-        },
-        data: {
-          ...info,
-        },
+      await api.patch("/user", {
+        ...info,
+        userId,
       });
 
       logger.info(`PATCH /user - User atualizado`);
@@ -99,25 +70,27 @@ class UsersController {
   }
 
   async getAllUsers(req: Request, res: Response) {
-    const prisma = new PrismaClient();
-
     try {
-      const allUsers = await prisma.user.findMany({
-        select: {
-          id: true,
-          email: true,
-          nome: true,
-          isAdmin: true,
-        },
-      });
+      const { data } = await api.get("/user");
 
       logger.info("GET /user - All users");
-      return res.status(200).json(JSON.stringify(allUsers));
+      return res.status(200).json(JSON.stringify(data.users));
     } catch (err) {
       logger.error(err);
       return res
         .status(400)
         .json({ message: "Não foi possível enviar todos os usuários" });
+    }
+  }
+
+  async editUser(req: Request, res: Response) {
+    const { userId } = req.body;
+
+    try {
+      const { data } = await api.get(`/user/${userId}`);
+      return res.render("edit-prof", { user: data.user });
+    } catch (err) {
+      return res.redirect("/entrar");
     }
   }
 }
