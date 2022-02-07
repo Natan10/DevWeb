@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import { User } from "../models/user";
 import logger from "../logger/logger";
 import api from "../../config/api";

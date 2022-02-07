@@ -3,12 +3,10 @@ import { UsersController } from "./controllers/UsersController";
 import { SessionsController } from "./controllers/SessionsController";
 import { AuthController } from "./controllers/AuthController";
 import { PromotionController } from "./controllers/PromotionsController";
-import { PrismaClient } from "@prisma/client";
 import logger from "./logger/logger";
 import api from "../config/api";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 router.get("/cadastrar", (req: Request, res: Response) => {
   logger.info("GET /cadastrar");

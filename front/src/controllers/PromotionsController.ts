@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { PrismaClient, Promotion } from "@prisma/client";
 import logger from "../logger/logger";
 import api from "../../config/api";
 

@@ -13,6 +13,7 @@ async function deleteUser(userId){
   fetch(`/user/${userId}`,{
     method: "DELETE",
   }).then((res) => {
+
     if(res.status === 200 || res.status === 204){
       document.getElementById(`user_${userId}`).remove();
       checkPromotionsTableUser(userId);
@@ -25,7 +26,7 @@ async function deleteUser(userId){
       res.json().then(data => {
         iziToast.info({
           title: 'Info',
-          message: data.message,
+          message: data.error,
           position: 'bottomLeft'
         });
       }).catch(_ => {

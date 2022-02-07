@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prisma } from "../../config/db";
+import { prisma } from "../config/db";
 import { Utils } from "../utils/passwordHash";
 import { HttpStatus } from "../utils/httpStatusCode";
 
