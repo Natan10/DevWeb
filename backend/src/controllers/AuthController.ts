@@ -9,26 +9,20 @@ interface TokenProps {
 }
 
 class AuthController {
-  async handler(req: Request, res: Response, next: NextFunction) {
+  async handler(req: Request, res: Response) {
     const prisma = new PrismaClient();
     const secret = process.env.JWT_SECRET?.toString() || "";
 
     try {
-      const authToken = req.headers.authorization?.split(" ")[1];
-      if (!authToken) {
-        throw new Error("Authentication failed!");
-      }
-
-      const { id } = verify(authToken, secret) as TokenProps;
+      const { token } = req.body;
+      const { id } = verify(token, secret) as TokenProps;
 
       const user = await prisma.user.findFirst({
         where: { id },
       });
 
       if (user) {
-        req.body.userId = user.id;
-        req.body.isAdmin = user.isAdmin;
-        next();
+        return res.status(200).json({ user });
       } else {
         return res.status(HttpStatus.Unauthorized).send();
       }

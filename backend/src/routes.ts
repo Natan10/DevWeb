@@ -15,11 +15,11 @@ const Auth = new AuthController();
 router.post("/login", Session.handler);
 
 // Auth Middleware
-router.use(Auth.handler);
+router.post("/auth", Auth.handler);
 
 // User
-router.get("/user", User.getAllUsers);
 router.post("/user", User.create);
+router.get("/user", User.getAllUsers);
 router.patch("/user", User.update);
 router.delete("/user/:id", User.delete);
 

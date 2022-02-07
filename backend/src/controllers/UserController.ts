@@ -19,7 +19,7 @@ class UserController {
       if (userExist) {
         return res
           .status(HttpStatus.BadRequest)
-          .json({ message: "User já existe!" });
+          .json({ error: "User já existe!" });
       }
 
       const createdUser = await prisma.user.create({
@@ -123,10 +123,10 @@ class UserController {
         },
       });
 
-      return res.status(200).json({ users: allUsers });
+      return res.status(HttpStatus.OK).json({ users: allUsers });
     } catch (err) {
       return res
-        .status(400)
+        .status(HttpStatus.BadRequest)
         .json({ message: "Não foi possível enviar todos os usuários" });
     }
   }
