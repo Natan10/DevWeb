@@ -3,6 +3,8 @@ import { User } from "../models/user";
 import logger from "../logger/logger";
 import api from "../../config/api";
 import upload from "../../config/multerConfig";
+import fs from "fs";
+import path from "path";
 
 class UsersController {
   async create(req: Request, res: Response) {
@@ -34,6 +36,23 @@ class UsersController {
         },
       });
 
+      fs.unlink(
+        path.join(
+          __dirname,
+          "..",
+          "..",
+          "public",
+          "uploads",
+          `user-${userId}.jpg`
+        ),
+        (err) => {
+          if (err) {
+            console.error("erro ao deletar foto!", err);
+          }
+          console.log("Deu certo!");
+        }
+      );
+
       logger.info(`DELETE /user - User deletado`);
       return res.status(204).send();
     } catch (err) {
@@ -47,7 +66,6 @@ class UsersController {
   async update(req: Request, res: Response) {
     const { userId, nome, email, password } = req.body;
 
-    console.log("aquiiii", req.body);
     try {
       const info = {
         nome: nome !== "" ? nome : undefined,
@@ -57,7 +75,6 @@ class UsersController {
         photo: req.file?.path,
       };
 
-      console.log("infoss", info);
       await api.patch("/user", {
         ...info,
         userId,
@@ -99,13 +116,28 @@ class UsersController {
   }
 
   async updateAvatar(req: Request, res: Response) {
+    const { userId } = req.body;
+
     upload(req, res, function (err: any) {
       if (err) {
         return res.status(400).json({ error: "Erro ao atualizar foto!" });
       }
-      console.log(req.file);
 
-      return res.status(200).json({ message: "Foto atualizada com sucesso!" });
+      api
+        .patch("/user", {
+          photo: req.file?.path,
+          userId,
+        })
+        .then((response) => {
+          if (response.status === 200 || response.status === 204) {
+            return res
+              .status(200)
+              .json({ message: "Foto atualizada com sucesso!" });
+          }
+        })
+        .catch(() => {
+          return res.status(400).json({ error: "Erro ao atualizar foto!" });
+        });
     });
   }
 }

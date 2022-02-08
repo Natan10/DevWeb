@@ -4,7 +4,11 @@
 	<div class="container edit-profile__content">
 		<h1>Editar Perfil <%= user.nome %></h1>
 		<input type="hidden" value="user-<%= user.id %>" id="user_hidden">
-		<img class="edit-profile__photo rounded" src="uploads/user-<%= user.id %>.jpg" alt="perfil"/>
+		<% if(user.photo){%>
+			<img class="edit-profile__photo rounded" src=<%= user.photo.split('/public/')[1] %> alt="perfil"/>
+		<%}else{%>
+			<img class="edit-profile__photo rounded" src="https://exame.com/wp-content/uploads/2021/02/GettyImages-1149947037-1.jpg" alt="perfil"/>
+		<% } %>
 		<form id="edit-profile__imgForm">
 			<div class="edit-profile__field">
 				<input type="file" id="edit_photo" name="avatar">

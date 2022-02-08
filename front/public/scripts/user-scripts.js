@@ -10,6 +10,12 @@ function checkPromotionsTableUser(userId){
 
 // delete user 
 async function deleteUser(userId){
+  const aux = confirm(`Deseja deletar o usuário ${userId}?`);
+
+  if(!aux){
+    return;
+  }
+
   fetch(`/user/${userId}`,{
     method: "DELETE",
   }).then((res) => {
