@@ -3,12 +3,20 @@
 <section class="edit-profile">
 	<div class="container edit-profile__content">
 		<h1>Editar Perfil <%= user.nome %></h1>
-		<img class="edit-profile__photo rounded" src="https://exame.com/wp-content/uploads/2021/02/GettyImages-1149947037-1.jpg" alt="perfil"/>
-
-		<form id="edit-profile__form">
+		<input type="hidden" value="user-<%= user.id %>" id="user_hidden">
+		<img class="edit-profile__photo rounded" src="uploads/user-<%= user.id %>.jpg" alt="perfil"/>
+		<form id="edit-profile__imgForm">
 			<div class="edit-profile__field">
-				<label for="fname-lname">Nome</label>
-				<input type="text" id="edit_name" value=<%= user.nome %> required placeholder="editar nome e sobrenome">
+				<input type="file" id="edit_photo" name="avatar">
+			</div>
+			<button type="submit" class="btn btn-success edit-profile__save">Atualizar</button>
+		</form>
+
+
+		<form id="edit-profile__form">	
+			<div class="edit-profile__field">
+				<label for="nome">Nome</label>
+				<input type="text" id="edit_name" name="nome" value=<%= user.nome %> required placeholder="editar nome e sobrenome">
 			</div>
 			<div class="edit-profile__field">
 				<label for="email">Email</label>
@@ -16,7 +24,7 @@
 			</div>
 			<div class="edit-profile__field">
 				<label for="password">Senha</label>
-				<input type="password" id="edit_password" placeholder="********">   
+				<input type="password" id="edit_password" name="password" placeholder="********">   
 			</div>
 	
 			<div class="edit-profile__buttons">

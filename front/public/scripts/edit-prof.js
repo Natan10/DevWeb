@@ -1,7 +1,40 @@
+// Formulário para imagem
+
+var formImage = document.getElementById('edit-profile__imgForm');
+var avatar = document.getElementsByName('avatar')[0];
+var user_id = document.getElementById('user_hidden').value.split('-')[1];
+
+formImage.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const formData = new FormData();
+  formData.append('avatar',avatar.files[0]);
+
+  fetch(`/userAvatar/${user_id}`,{
+    method: 'PATCH',
+    body: formData
+  }).then(data => {
+    if(data.status !== 200 && data.status !== 204){ 
+      throw new Error();
+    }
+    window.location.reload();
+  }).catch(_ => {
+    iziToast.error({
+        title: 'Erro',
+        message: 'Erro ao atualizar foto!',
+        position: 'bottomLeft'
+    });
+  })
+
+});
+
+// Formulário para os campos de nome,emails e password
+
 var nomeField = document.getElementById('edit_name');
 var emailField = document.getElementById('edit_email');
 var passwordField = document.getElementById('edit_password');
 var form = document.getElementById('edit-profile__form');
+
 
 form.addEventListener('submit', function(e){
     e.preventDefault();

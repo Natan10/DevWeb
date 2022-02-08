@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { User } from "../models/user";
 import logger from "../logger/logger";
 import api from "../../config/api";
+import upload from "../../config/multerConfig";
 
 class UsersController {
   async create(req: Request, res: Response) {
@@ -45,14 +46,18 @@ class UsersController {
 
   async update(req: Request, res: Response) {
     const { userId, nome, email, password } = req.body;
+
+    console.log("aquiiii", req.body);
     try {
       const info = {
         nome: nome !== "" ? nome : undefined,
         email: email !== "" ? email : undefined,
         password:
           password !== "" ? await User.hashPassword(password) : undefined,
+        photo: req.file?.path,
       };
 
+      console.log("infoss", info);
       await api.patch("/user", {
         ...info,
         userId,
@@ -91,6 +96,17 @@ class UsersController {
     } catch (err) {
       return res.redirect("/entrar");
     }
+  }
+
+  async updateAvatar(req: Request, res: Response) {
+    upload(req, res, function (err: any) {
+      if (err) {
+        return res.status(400).json({ error: "Erro ao atualizar foto!" });
+      }
+      console.log(req.file);
+
+      return res.status(200).json({ message: "Foto atualizada com sucesso!" });
+    });
   }
 }
 

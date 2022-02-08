@@ -47,6 +47,7 @@ router.get("/admin", (req: Request, res: Response) => {
 router.get("/editar", new UsersController().editUser);
 
 router.patch("/user", new UsersController().update);
+router.patch("/userAvatar/:id", new UsersController().updateAvatar);
 
 router.get("/get-users", new UsersController().getAllUsers);
 
