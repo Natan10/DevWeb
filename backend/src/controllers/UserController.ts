@@ -80,14 +80,17 @@ class UserController {
   }
 
   async update(req: Request, res: Response) {
-    const { userId, nome, email, password } = req.body;
+    const { userId, nome, email, password, isAdmin } = req.body;
 
     try {
       const info = {
         nome: nome,
         email: email,
         password: password ? await Utils.hashPassword(password) : undefined,
+        isAdmin: isAdmin ? true : false
       };
+
+      console.log(info.isAdmin)
 
       console.log("infos", info);
 

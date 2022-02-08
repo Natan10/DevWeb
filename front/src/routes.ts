@@ -50,6 +50,8 @@ router.patch("/user", new UsersController().update);
 
 router.get("/get-users", new UsersController().getAllUsers);
 
+router.get("/edit-user", new UsersController().editUserById);
+
 router.get("/user-promotions", new PromotionController().getAllPromotionsById);
 
 router.get("/new-promotion", (req: Request, res: Response) => {

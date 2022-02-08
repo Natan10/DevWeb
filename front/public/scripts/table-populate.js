@@ -8,9 +8,11 @@ function innerHTMLUser(user) {
     <td class="label">${user.email}</td>
     <td class="info">${user.isAdmin ? "Gerente" : "Usuário"}</td>
     <td class="action" colspan="2">
-      <button class="btn btn-primary">
-        Editar
-      </button>
+      <a href="/edit-user?id=${user.id}">
+        <button class="btn btn-primary">
+          Editar
+        </button>
+      </a>
       <button class="btn btn-danger user_delete_btn" onclick="deleteUser(${
         user.id
       })">Deletar</button>

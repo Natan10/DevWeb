@@ -44,18 +44,21 @@ class UsersController {
   }
 
   async update(req: Request, res: Response) {
-    const { userId, nome, email, password } = req.body;
+    const { userId, nome, email, password, id, isAdminValue } = req.body;
+
+    console.log(isAdminValue )
     try {
       const info = {
         nome: nome !== "" ? nome : undefined,
         email: email !== "" ? email : undefined,
         password:
           password !== "" ? await User.hashPassword(password) : undefined,
+        isAdmin: isAdminValue ? true : false,
       };
 
       await api.patch("/user", {
         ...info,
-        userId,
+        userId: id ? id : userId,
       });
 
       logger.info(`PATCH /user - User atualizado`);
@@ -88,6 +91,17 @@ class UsersController {
     try {
       const { data } = await api.get(`/user/${userId}`);
       return res.render("edit-prof", { user: data.user });
+    } catch (err) {
+      return res.redirect("/entrar");
+    }
+  }
+
+  async editUserById(req: Request, res: Response) {
+    const { id } = req.query;
+
+    try {
+      const { data } = await api.get(`/user/${id}`);
+      return res.render("edit-user", { user: data.user });
     } catch (err) {
       return res.redirect("/entrar");
     }
