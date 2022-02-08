@@ -80,16 +80,15 @@ class UserController {
   }
 
   async update(req: Request, res: Response) {
-    const { userId, nome, email, password } = req.body;
+    const { userId, nome, email, password, photo } = req.body;
 
     try {
       const info = {
         nome: nome,
         email: email,
+        photo: photo,
         password: password ? await Utils.hashPassword(password) : undefined,
       };
-
-      console.log("infos", info);
 
       await prisma.user.update({
         where: {
