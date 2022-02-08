@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../config/db";
 import { Utils } from "../utils/passwordHash";
 import { HttpStatus } from "../utils/httpStatusCode";
+import { getKey, setKey } from "../config/cache";
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -108,7 +109,18 @@ class UserController {
   }
 
   async getAllUsers(req: Request, res: Response) {
+    const { userId } = req.body;
+
     try {
+      console.time("allUsers");
+      const cachedUsers = await getKey(`user-${userId}-allUsers`);
+
+      if (cachedUsers) {
+        return res
+          .status(HttpStatus.OK)
+          .json({ users: JSON.parse(cachedUsers) });
+      }
+
       const allUsers = await prisma.user.findMany({
         select: {
           id: true,
@@ -118,6 +130,10 @@ class UserController {
           createdAt: true,
         },
       });
+
+      console.timeEnd("allUsers");
+      // Cache
+      await setKey(`user-${userId}-allUsers`, allUsers);
 
       return res.status(HttpStatus.OK).json({ users: allUsers });
     } catch (err) {
